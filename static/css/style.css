@@ -78,24 +78,44 @@
 
 
 
-/* statistics */
+/* statistics  style */
 
 .stat_sec{
-    height: 270;
+    height: 350;
     background-color: white;
 }   
 
 .stats{
+    padding: 70 0;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
 }
 
 
-.stat {
-    display: flex;
-    justify-content: center;
+
+.stat h3{
+
+    color: #36B449;
+    text-align: center;
+    font-size: 100;
 }
 
-.stat i{
-    color: #36B449;
+.stat h1{
+    font-size: 45;
+    text-align: center;
+    font-family: sans-serif;
+    margin-top: 15px;
+    color: #333;
 }
+
+.stat h2{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 35;
+    color: #333;
+}
+/* statistics  style */
+
+
+
+
