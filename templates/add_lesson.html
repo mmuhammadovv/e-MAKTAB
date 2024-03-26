@@ -1,0 +1,54 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Add Lesson</title>
+<style>
+    .lesson_vid{
+        background-image: url(static/images/button.png);
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+<!-- navbar -->
+<div class="container">
+    <div class="navbar">
+        <div class="nav_logo">
+            <h1><span>M</span>School</h1>
+        </div>
+        <div class="nav_menu">
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="{% url 'lessons' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
+            <a href="{% url 'teachers' %}"><i class="fa-solid fa-chalkboard-user"></i>Teachers</a>
+            <a href="{% url 'pupils' %}"><i class="fa-solid fa-person"></i>Pupils</a>
+            <a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+        </div>
+    </div>
+</div>
+<!-- navbar -->
+
+
+<!-- add lesson -->
+<section class="add_lesson_sec">
+    <div class="container">
+        <div class="lesson">
+            <div class="lesson_vid">
+                .
+            </div>
+            <div class="about_lesson">
+                <input type="text" >
+                <textarea></textarea>
+            </div>
+        </div>
+        <button type="submit">Add</button>
+    </div>
+</section>
+<!-- add lesson -->
+
+
+<script>
+    var form_fields = document.getElementsByTagName('input')
+            form_fields[0].placeholder = 'Lesson Topic..';
+
+    var form_fields = document.getElementsByTagName('textarea')
+            form_fields[0].placeholder = 'Description.';
+</script>

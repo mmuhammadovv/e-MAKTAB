@@ -1,20 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
     --Kanit: 'Kanit', 'sans-serif';
 }
 
-.container{
+.container {
     max-width: 87%;
     margin: 0 auto;
 }
 
+
+body {
+    background-color: #F5FFF9;
+}
 
 
 /* home style */
@@ -23,7 +27,7 @@
     height: 735;
 }
 
-.nav_logo h1{
+.nav_logo h1 {
     font-family: var(--Kanit);
     font-weight: 400;
     font-style: normal;
@@ -31,21 +35,21 @@
 }
 
 
-.nav_logo span{
+.nav_logo span {
     color: #36B449;
 }
 
-.navbar{
+.navbar {
     padding-top: 10px;
     display: flex;
     justify-content: space-between;
 }
 
-.nav_menu{
+.nav_menu {
     padding-top: 18px;
 }
 
-.nav_menu a{
+.nav_menu a {
     color: #36B449;
     text-decoration: none;
     font-family: var(--Kanit);
@@ -54,13 +58,13 @@
     padding-right: 10px;
 }
 
-.nav_menu a i{
+.nav_menu a i {
     padding-right: 3px;
 }
 
 
 
-.home p{
+.home p {
     font-family: "Kanit", sans-serif;
     font-weight: 200;
     font-style: normal;
@@ -80,27 +84,26 @@
 
 /* statistics  style */
 
-.stat_sec{
-    height: 350;
-    background-color: white;
-}   
+.stat_sec {
+    height: 400;
+}
 
-.stats{
-    padding: 70 0;
+.stats {
+    padding: 90 0;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
 }
 
 
 
-.stat h3{
+.stat h3 {
 
     color: #36B449;
     text-align: center;
     font-size: 100;
 }
 
-.stat h1{
+.stat h1 {
     font-size: 45;
     text-align: center;
     font-family: sans-serif;
@@ -108,14 +111,447 @@
     color: #333;
 }
 
-.stat h2{
+.stat h2 {
     text-align: center;
     font-family: sans-serif;
     font-size: 35;
     color: #333;
 }
+
 /* statistics  style */
 
 
 
 
+/* about style */
+
+.about_sec {
+    height: 600;
+}
+
+
+.about h1 {
+    font-family: var(--Kanit);
+    font-weight: 500;
+    font-size: 50;
+    color: #36B449;
+    padding-top: 45px;
+}
+
+.about p {
+    margin-top: 15px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 20;
+
+}
+
+/* about style */
+
+
+
+
+/* teachers style */
+.teach_img img {
+    width: 300;
+    border-radius: 5px;
+}
+
+.teachs_sec {
+    margin-top: 100px;
+    height: 630;
+}
+
+.teachs_sec h1 {
+    font-family: var(--Kanit);
+    font-weight: 500;
+    font-size: 55;
+    margin-left: 10px;
+    color: #36B449;
+}
+
+.teachs_sec p {
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 23;
+}
+
+.teachs {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.teach_img {
+    display: flex;
+    justify-content: center;
+}
+
+.teach_social {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.teach_social a {
+    font-size: 30;
+    padding-right: 13px;
+    color: #555;
+    transition-duration: .3s;
+}
+
+.teach_social a:hover {
+    cursor: pointer;
+    color: #36B449;
+}
+
+/* teacher style */
+
+
+
+
+/* contact style */
+.contact_sec {
+    height: 600;
+    margin-top: 50px;
+}
+
+.contact_us {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+iframe {
+    height: 600;
+    width: 759;
+}
+
+.contact {
+    padding-top: 20px;
+}
+
+.contact h1 {
+    color: #36B449;
+    font-family: var(--Kanit);
+    font-weight: 500;
+    margin-bottom: 15px;
+    font-size: 50;
+}
+
+.contact input {
+    width: 630;
+    height: 60;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.contact input::placeholder {
+    font-size: 18;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    padding-left: 7px;
+}
+
+.contact textarea {
+    width: 629;
+    display: block;
+    height: 150;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.contact textarea::placeholder {
+    font-size: 18;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    padding-left: 7px;
+    padding-top: 5px;
+}
+
+.contact button {
+    width: 630;
+    height: 60;
+    color: white;
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 25;
+    background-color: #36B449;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    transition: .5s ease;
+}
+
+.contact button:hover {
+    background-color: #fff;
+    color: #36B449;
+    cursor: pointer;
+}
+
+/* contact */
+
+
+
+/* footer */
+.footer_sec {
+    height: 300;
+}
+
+.footer {
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer h1 {
+    font-family: var(--Kanit);
+    font-weight: 500;
+    font-size: 50;
+}
+
+.footer h1 span {
+    color: #36B449;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #36B449;
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 20;
+    margin-bottom: 8px;
+}
+
+
+.end {
+    background-color: #36B449;
+    height: 80;
+    display: flex;
+    justify-content: center;
+}
+
+.end p {
+    color: white;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 20;
+    padding-top: 2 0px;
+}
+
+/* footer */
+
+
+
+
+/* teachers list */
+.teachers_list {
+    margin-top: 10px;
+}
+
+.teachers_list h1 {
+    color: #36B449;
+    font-family: var(--Kanit);
+    font-weight: 500;
+    font-size: 50;
+}
+
+.teacher_l {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.teacher_l td,
+.teacher_l th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.teacher_l td{
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 20;
+}
+
+.teacher_l tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.teacher_l tr:hover {
+    background-color: #36B449;
+    color: white;
+}
+
+.teacher_l th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 25 ;
+    text-align: left;
+    background-color: #36B449;
+    color: white;
+}
+
+/* teach list style */
+
+
+
+/* lessons list */
+.lessons{
+    margin-top: 15px;
+}
+
+.lesson{
+
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 450;
+}
+
+.lesson_vid{
+    margin-top: 15px;
+    height: 410;
+    width: 780;
+}
+
+.about_lesson{
+    display: block;
+}
+
+.about_lesson h1{
+    font-family: var(--Kanit);
+    font-weight: 500;
+    color: #36B449;
+    font-size: 40;
+}
+
+.about_lesson p{
+    font-family: var(--Kanit);
+    font-size: 20;
+    font-weight: 200;
+}
+
+/* lesson */
+
+
+/* add lesson  */
+
+
+.about_lesson{
+    margin-top: 15px;
+}
+
+.about_lesson input{
+    width: 500;
+    height: 50;
+    border: 2px solid #36B449;
+    border-radius: 10px;
+}
+
+.about_lesson input::placeholder{
+    padding-left: 5px;
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 18;
+}
+.about_lesson textarea{
+    margin-top: 10px;
+    width: 500;
+    height: 348;
+    border: 2px solid #36B449;
+    border-radius: 10px;
+}
+
+
+.about_lesson textarea::placeholder{
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 18;
+}
+
+.add_lesson_sec button{
+    width: 100%;
+    background-color: #36B449;
+    height: 50;
+    color: white;
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 20;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+/* add lesson style */
+
+
+
+
+
+
+/* add teacher */
+.add_teacher_sec {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center ;
+}
+
+.add_teacher input{
+    display: block;
+    width: 400;
+    height: 50;
+    border: 2px solid #36B449;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.add_teacher input::placeholder{
+    padding-left: 5px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+}
+
+
+.add_teacher textarea{
+    display: block;
+    width: 400;
+    height: 150;
+    border: 2px solid #36B449;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.add_teacher textarea::placeholder{
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+}
+
+.add_teacher button{
+    width: 100%;
+    background-color: #36B449;
+    color: white;
+    height: 50;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+    margin-bottom: 40px;
+
+}
+
+/* add teacher style */
+
+
+
+
+
+/* pupils */
