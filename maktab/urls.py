@@ -13,4 +13,5 @@ urlpatterns = [
     path('add_lesson', add_lesson, name='add_lesson'),
     path('add_teacher', add_teacher, name='add_teacher'),
     path('add_pupil', add_pupil, name='add_pupil'),
+    path('login', login_function, name='login')
 ]

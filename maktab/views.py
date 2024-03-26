@@ -34,3 +34,7 @@ def add_teacher(request):
 
 def add_pupil(request):
     return render(request, 'add_pupil.html')
+
+
+def login_function(request):
+    return render(request, 'login.html')

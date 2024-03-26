@@ -535,7 +535,7 @@ iframe {
 }
 
 .add_teacher button{
-    width: 100%;
+    width: 400;
     background-color: #36B449;
     color: white;
     height: 50;
@@ -554,4 +554,84 @@ iframe {
 
 
 
-/* pupils */
+/* login  style */
+
+.login_sec{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.login_sec img{
+    width: 650;
+}
+
+/* add teacher */
+.add_teacher_sec {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center ;
+}
+
+.login{
+    margin-top: 240px;
+}
+
+.login input{
+    display: block;
+    width:550;
+    height: 50;
+    border: 2px solid #36B449;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.login input::placeholder{
+    padding-left: 5px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+}
+
+
+.login textarea{
+    display: block;
+    width: 400;
+    height: 150;
+    border: 2px solid #36B449;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.login textarea::placeholder{
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+}
+
+.login button{
+    width: 550;
+    background-color: #36B449;
+    color: white;
+    height: 50;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+    margin-bottom: 40px;
+
+}
+
+button{
+    transition: .7s ease;
+}
+
+
+button:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: #36B449;
+}
+/* add teacher style */
