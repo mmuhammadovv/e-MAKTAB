@@ -30,16 +30,17 @@
 <!-- add lesson -->
 <section class="add_lesson_sec">
     <div class="container">
-        <div class="lesson">
-            <div class="lesson_vid">
-                .
-            </div>
+        <div class="add_lesson">
             <div class="about_lesson">
-                <input type="text" >
-                <textarea></textarea>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.topic}}
+                    {{form.description}}
+                    {{form.video}}
+                    <button class="btn btn-success btn-lg">Upload</button>    
+                </form>
             </div>
         </div>
-        <button type="submit">Add</button>
     </div>
 </section>
 <!-- add lesson -->
@@ -47,7 +48,7 @@
 
 <script>
     var form_fields = document.getElementsByTagName('input')
-            form_fields[0].placeholder = 'Lesson Topic..';
+            form_fields[1].placeholder = 'Lesson Topic..';
 
     var form_fields = document.getElementsByTagName('textarea')
             form_fields[0].placeholder = 'Description.';

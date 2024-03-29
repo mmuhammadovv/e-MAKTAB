@@ -1,18 +1,56 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Admin</title>
+
+<!-- navbar -->
+<div class="container">
+    <div class="navbar">
+        <div class="nav_logo">
+            <h1><span>M</span>School</h1>
+        </div>
+        <div class="nav_menu">
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
+            <a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+        </div>
+    </div>
+</div>
+<!-- navbar -->
+
+
+
+
 
 
 <!-- lessons -->
-<div class="container">
-    <div class="lessons">
+<div class="lessons">
+    <div class="container">
         <div class="lesson">
             <div class="lesson_vid">
                 .
             </div>
             <div class="about_lesson">
                 <h1>Django Rest FrameWork</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat alias consectetur nesciunt nisi nostrum dignissimos, libero ratione natus, accusantium magni tempore? Nesciunt veniam error quis numquam officiis, reiciendis asperiores quam non expedita. Accusamus eligendi est neque quod hic labore nesciunt, qui quam veritatis iure iusto sunt error dicta quibusdam minima itaque odit consectetur officiis, voluptate facere recusandae nulla, asperiores delectus. Enim nesciunt fuga corporis inventore reiciendis pariatur nulla ullam esse repellendus sequi dolor repudiandae beatae soluta tempora molestias laborum, deserunt quod ipsa maiores possimus rem velit quam. Iure nam minus assumenda consequatur eius voluptas, tempore sunt exercitationem a dolorem molestias.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam error fugit omnis, porro adipisci corrupti. Vel delectus similique in illo esse nemo neque, consequuntur voluptate optio blanditiis beatae laboriosam suscipit tempore facere impedit recusandae ut fugiat magnam veniam assumenda? Molestias necessitatibus accusamus vitae repellendus nisi temporibus eligendi quia illo pariatur.</p>
+            </div>
+        </div>
+        <div class="lesson">
+            <div class="lesson_vid">
+                .
+            </div>
+            <div class="about_lesson">
+                <h1>Django Rest FrameWork</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil, molestiae, odio saepe eum vitae eveniet ea dicta provident blanditiis dolorum. Facilis molestiae veritatis rerum corrupti quos dignissimos dolores exercitationem reiciendis repudiandae ipsa aliquam ducimus nesciunt enim, et, sequi voluptatum obcaecati nihil eaque hic. Error exercitationem excepturi voluptatibus distinctio repellendus.</p>
+            </div>
+        </div>
+        <div class="lesson">
+            <div class="lesson_vid">
+                .
+            </div>
+            <div class="about_lesson">
+                <h1>Django Rest FrameWork</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eveniet provident quam, corporis qui necessitatibus fugiat pariatur, esse animi tempora blanditiis perferendis magnam nobis consectetur consequuntur maxime rem quisquam id recusandae nostrum doloribus deserunt sequi tenetur. Non, laudantium ab et distinctio cumque voluptatem velit dolorum nam accusamus reprehenderit eaque iusto.</p>
             </div>
         </div>
     </div>

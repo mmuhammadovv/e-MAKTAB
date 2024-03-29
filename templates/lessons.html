@@ -3,11 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Lessons</title>
 <style>
-    .lesson_vid{
-        background-image: url(static/images/button.png);
-        background-size: cover;
-        background-position: center;
-    }
+
 </style>
 
 
@@ -34,33 +30,20 @@
 <!-- lessons -->
 <div class="lessons">
     <div class="container">
-        <div class="lesson">
-            <div class="lesson_vid">
-                .
+        {% for x in all %}
+            <div class="lesson">
+                <div class="lesson_vid">
+                    <video  controls="controls" >
+                        <source src="{{x.video.url}}" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="about_lesson">
+                    <h1>{{x.topic}}</h1>
+                    <p>{{x.description}}</p>
+                </div>
             </div>
-            <div class="about_lesson">
-                <h1>Django Rest FrameWork</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam error fugit omnis, porro adipisci corrupti. Vel delectus similique in illo esse nemo neque, consequuntur voluptate optio blanditiis beatae laboriosam suscipit tempore facere impedit recusandae ut fugiat magnam veniam assumenda? Molestias necessitatibus accusamus vitae repellendus nisi temporibus eligendi quia illo pariatur.</p>
-            </div>
-        </div>
-        <div class="lesson">
-            <div class="lesson_vid">
-                .
-            </div>
-            <div class="about_lesson">
-                <h1>Django Rest FrameWork</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil, molestiae, odio saepe eum vitae eveniet ea dicta provident blanditiis dolorum. Facilis molestiae veritatis rerum corrupti quos dignissimos dolores exercitationem reiciendis repudiandae ipsa aliquam ducimus nesciunt enim, et, sequi voluptatum obcaecati nihil eaque hic. Error exercitationem excepturi voluptatibus distinctio repellendus.</p>
-            </div>
-        </div>
-        <div class="lesson">
-            <div class="lesson_vid">
-                .
-            </div>
-            <div class="about_lesson">
-                <h1>Django Rest FrameWork</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eveniet provident quam, corporis qui necessitatibus fugiat pariatur, esse animi tempora blanditiis perferendis magnam nobis consectetur consequuntur maxime rem quisquam id recusandae nostrum doloribus deserunt sequi tenetur. Non, laudantium ab et distinctio cumque voluptatem velit dolorum nam accusamus reprehenderit eaque iusto.</p>
-            </div>
-        </div>
+        {% endfor %}
+        
     </div>
 </div>
 <!-- lessons -->

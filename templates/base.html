@@ -155,11 +155,14 @@
             <div class="contact_us">
                 <div class="contact">
                     <h1>Contact Us</h1>
-                    <input type="text">
-                    <input type="email">
-                    <input type="text">
-                    <textarea ></textarea>
-                    <button type="submit">SEND</button>
+                    <form action="/contact" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="name">
+                        <input type="email" name="email">
+                        <input type="text" name="phonenumber">
+                        <textarea name="description"></textarea>
+                        <button type="submit">SEND</button>
+                    </form>
                 </div>
                 <div class="location">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12266.520483993405!2d64.4449661!3d39.7704123!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f50058940b0e5e9%3A0xd846578a01e12dcb!2sMonday%20Academy!5e0!3m2!1sru!2s!4v1711371106760!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -196,9 +199,9 @@
 
     <script>
         var form_fields = document.getElementsByTagName('input')
-            form_fields[0].placeholder = 'Your Name..';
-            form_fields[1].placeholder = 'Your Email..';
-            form_fields[2].placeholder = 'Your Phone..';
+            form_fields[1].placeholder = 'Your Name..';
+            form_fields[2].placeholder = 'Your Email..';
+            form_fields[3].placeholder = 'Your Phone..';
 
 
         var form_fields = document.getElementsByTagName('textarea')
