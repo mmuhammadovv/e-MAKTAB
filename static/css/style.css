@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -60,6 +61,40 @@ body {
 
 .nav_menu a i {
     padding-right: 3px;
+}
+
+.search_sec{
+    display: flex;
+}
+
+.search{
+    display: flex;
+    margin-right: 20px;
+}
+
+.search input{
+    background-color: #fff;
+    border: 2px solid #36B449;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 200;
+    height: 45;
+}
+
+.search input::placeholder{
+    padding-left: 5px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+}
+
+.search button{
+    background-color: #36B449;
+    color: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid #36B449;
+    width: 25;
 }
 
 
@@ -406,20 +441,29 @@ iframe {
 }
 
 .lesson{
-
+    margin-bottom: 15px;    
     display: grid;
     grid-template-columns: 60% 40%;
     height: 450;
 }
 
-.lesson_vid video{
+.lesson:last-child{
+    margin-bottom: 50px;
+}
+.lesson_vid img{
     margin-top: 15px;
-    height: 430;
+    height: 438;
     width: 780;
+}
+
+.lesson_vid video{
+    height: 630;
+    width: 100%;
 }
 
 .about_lesson{
     display: block;
+    margin-bottom: 20px;
 }
 
 .about_lesson h1{
@@ -427,6 +471,10 @@ iframe {
     font-weight: 500;
     color: #36B449;
     font-size: 40;
+}
+
+.about_lesson a{
+    text-decoration: none;
 }
 
 .about_lesson p{
@@ -438,58 +486,62 @@ iframe {
 /* lesson */
 
 
-/* add lesson  */
 
+
+/* add lesson  */
 .add_lesson{
     display: flex;
-    justify-items: center;
+    margin-top: 20px;
+    justify-content: center;
 }
-
-.about_lesson{
-    margin-top: 15px;
-}
-
-.about_lesson input{
-    width: 500;
+.add_lesson input{
+    display: block;
+    width: 400;
     height: 50;
     border: 2px solid #36B449;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.about_lesson input::placeholder{
+.add_lesson input::placeholder{
     padding-left: 5px;
     font-family: var(--Kanit);
-    font-weight: 400;
+    font-weight: 300;
     font-size: 18;
 }
-.about_lesson textarea{
-    margin-top: 10px;
-    width: 500;
-    height: 348;
+
+.add_lesson textarea{
+    display: block;
+    width: 400;
+    height: 150;
     border: 2px solid #36B449;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-
-.about_lesson textarea::placeholder{
+.add_lesson textarea::placeholder{
     padding-left: 5px;
     padding-top: 5px;
     font-family: var(--Kanit);
-    font-weight: 400;
+    font-weight: 300;
     font-size: 18;
 }
 
-.add_lesson_sec button{
-    width: 410;
+.add_lesson button{
+    width: 400;
     background-color: #36B449;
-    height: 50;
     color: white;
-    font-family: var(--Kanit);
-    font-weight: 400;
-    font-size: 20;
-    border: 2px solid white;
+    height: 50;
+    border: none;
     border-radius: 10px;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 18;
+    margin-bottom: 40px;
+
 }
+
+
 /* add lesson style */
 
 
@@ -513,6 +565,22 @@ iframe {
     margin-bottom: 10px;
 }
 
+.choose{
+    display: flex;
+}
+
+.choose input{
+    width: 40;
+}
+
+.choose p{
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 20;
+    color: #444;
+    margin-top: 5px;
+    margin-left: 5px;
+}
 .add_teacher input::placeholder{
     padding-left: 5px;
     font-family: var(--Kanit);

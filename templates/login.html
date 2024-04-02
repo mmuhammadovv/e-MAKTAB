@@ -24,9 +24,12 @@
                 <img src="{% static 'images/login.png' %}" alt="">
             </div>
             <div class="login">
-                <input type="email">
-                <input type="password">
-                <button>Login</button>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.username }}
+                    {{ form.password }}
+                    <button>Login</button>
+                </form>
             </div>
         </div>
     </div>

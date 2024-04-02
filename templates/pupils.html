@@ -10,12 +10,17 @@
             <h1><span>M</span>School</h1>
         </div>
         <div class="nav_menu">
+            {% if user.is_superuser %}
             <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
-            <a href="{% url 'add_pupil' %}"><i class="fa-solid fa-plus"></i>Add</a>
-            <a href="{% url 'admin_account' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
+            <a href="{% url 'add_user' %}"><i class="fa-solid fa-plus"></i>Add User</a>
+            <a href="{% url 'account' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
             <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
             <a href="{% url 'teachers' %}"><i class="fa-solid fa-chalkboard-user"></i>Teachers</a>
-            <a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+            {% else %}
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -25,6 +30,7 @@
 <!-- techers  -->
 <div class="teachers_list">
     <div class="container">
+        {% if user.is_superuser %}
         <h1>Pupils</h1>
         <table class="teacher_l">
             <tr>
@@ -81,6 +87,9 @@
             </tr>
            
         </table>
+        {% else %}
+        <p>You do not have access to this page</p>
+        {% endif %}
     </div>
 </div>
 <!-- teacher list -->

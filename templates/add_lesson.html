@@ -16,11 +16,20 @@
             <h1><span>M</span>School</h1>
         </div>
         <div class="nav_menu">
+            {% if user.is_superuser %}
             <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
             <a href="{% url 'lessons' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
             <a href="{% url 'teachers' %}"><i class="fa-solid fa-chalkboard-user"></i>Teachers</a>
             <a href="{% url 'pupils' %}"><i class="fa-solid fa-person"></i>Pupils</a>
-            <a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+            {% elif user.is_teacher %}
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="{% url 'lessons' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
+            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+            {% else %}
+            <p>You Can't add a Lesson</p>
+            {% endif %}
+
         </div>
     </div>
 </div>
@@ -31,14 +40,19 @@
 <section class="add_lesson_sec">
     <div class="container">
         <div class="add_lesson">
-            <div class="about_lesson">
+            <div class="about_lesson_add">
+                {% if user.is_superuser or user.is_teacher %}
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{form.topic}}
+                    {{form.title}}
                     {{form.description}}
-                    {{form.video}}
+                    {{form.image}}
+                    {{form.file}}
                     <button class="btn btn-success btn-lg">Upload</button>    
                 </form>
+                {% else %}
+                <p>You Can't add Lesson</p>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@
 <body>
     
     <!-- home  -->
-    <section class="home_sec">
+    <section class="home_sec" id="home">
         <div class="container">
             <div class="home">
                 <!-- navbar -->
@@ -38,9 +38,17 @@
                         <h1><span>M</span>School</h1>
                     </div>
                     <div class="nav_menu">
+                        {% if user.is_superuser or user.is_teacher %}
+                        <a href="#home"><i class="fa-solid fa-house"></i>Home</a>
+                        <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
+                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>Username</a>
+                        {% else %}
                         <a href="#"><i class="fa-solid fa-house"></i>Home</a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i>Lessons</a>
-                        <a href="{% url 'admin_account' %}"><i class="fa-solid fa-user"></i>Username</a>
+                        <a href="{% url 'account' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
+                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>Username</a>
+                        {% endif %}
+
+
                     </div>
                 </div>
                 <!-- navbar -->
@@ -80,7 +88,7 @@
 
 
     <!-- about -->
-    <section class="about_sec">
+    <section class="about_sec" id="about">
         <div class="container">
             <div class="about">
                 <h1>Why Choose Us</h1>
@@ -94,7 +102,7 @@
 
 
     <!-- teachers -->
-    <section class="teachs_sec">
+    <section class="teachs_sec" id="teachers">
         <div class="container">
             <div class="teachers">
                 <div class="teachs_text">
@@ -150,14 +158,14 @@
 
 
     <!-- contact -->
-    <section class="contact_sec">
+    <section class="contact_sec" id="contact">
         <div class="container">
             <div class="contact_us">
                 <div class="contact">
                     <h1>Contact Us</h1>
                     <form action="/contact" method="POST">
                         {% csrf_token %}
-                        <input type="text" name="name">
+                        <input type="text" name="fullname">
                         <input type="email" name="email">
                         <input type="text" name="phonenumber">
                         <textarea name="description"></textarea>
@@ -182,10 +190,10 @@
                     <h1><span>M</span>School</h1>
                 </div>
                 <div class="menu">
-                    <a href="">HOME</a>
-                    <a href="">ABOUT US</a>
-                    <a href="">TEACHERS</a>
-                    <a href="">CONTACT US</a>
+                    <a href="#home">HOME</a>
+                    <a href="#about">ABOUT US</a>
+                    <a href="#teachers">TEACHERS</a>
+                    <a href="#contact">CONTACT US</a>
                 </div>
             </div>
         </div>

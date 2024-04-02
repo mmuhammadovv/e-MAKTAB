@@ -1,8 +1,13 @@
 from .models import *
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
+from django.http import StreamingHttpResponse
 from django.contrib import messages
+from .services import open_file
+from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -10,33 +15,41 @@ from django.contrib import messages
 def home(request):
     return render(request, "base.html")
 
+@login_required(login_url='login')
+def account(request):
+    all_lesson=Video.objects.all()
+    return render(request, "account.html", {'all':all_lesson})
 
-def admin_account(request):
-    return render(request, "admin_account.html")
-
-
-def teacher_account(request):
-    return render(request, "teacher_account.html")
-
-
-def pupil_account(request):
-    return render(request, "pupil_account.html")
-
-
+@login_required(login_url='login')
 def pupils(request):
     return render(request, "pupils.html")
 
-
+@login_required(login_url='login')
 def teachers(request):
     return render(request, "teachers.html")
 
-
+@login_required(login_url='login')
 def lessons(request):
-    all_lesson=Lesson.objects.all()
-
+    all_lesson=Video.objects.all()
     return render(request, "lessons.html",{"all":all_lesson})
+@login_required(login_url='login')
+def lesson(request, pk:int):
+    lesson = get_object_or_404(Video, id=pk)
+    return render(request, 'lesson.html', {'lesson':lesson})
 
 
+
+def streaming_lesson(request, pk: int):
+    file, status_code, content_length, content_range = open_file(request, pk)
+    response = StreamingHttpResponse(file, status=status_code, content_type='video/mp4')
+
+    response['Accept-Ranges'] = 'bytes'
+    response['Content-Length'] = str(content_length)
+    response['Cache-Control'] = 'no-cache'
+    response['Content-Range'] = content_range
+    return response
+
+@login_required(login_url='login')
 def add_lesson(request):
     if request.method == "POST":
         form=Lesson_form(data=request.POST,files=request.FILES)
@@ -47,18 +60,42 @@ def add_lesson(request):
         form=Lesson_form()
     return render(request, "add_lesson.html", {'form':form})
 
+@login_required(login_url='login')
+def add_user(request):
+    msg = None
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            msg = 'user created'
+            return redirect('account')
+        else:
+            msg = 'form is not valid'
+    else:
+        form = SignUpForm()
 
-def add_teacher(request):
-    return render(request, "add_teacher.html")
+    return render(request, "add_user.html", {'form':form, 'msg':msg})
 
-
-def add_pupil(request): 
-    return render(request, "add_pupil.html")
 
 
 def login_function(request):
-    return render(request, "login.html")
+    form = LoginForm(request.POST or None)
+    msg = None
+    if request.method == 'POST':
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)    
+            login(request, user)
+            return redirect('home')
+        else:
+            msg = 'error validating form'
+    return render(request, 'login.html', {'form':form, 'msg':msg})
 
+
+def logoutfunction(request):
+    logout(request)
+    return redirect('login')
 
 
 def contact(request):
