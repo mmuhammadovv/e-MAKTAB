@@ -5,13 +5,15 @@ from django.dispatch import receiver
 from .validators import file_size
 from django.utils import timezone
 from django.core.validators import FileExtensionValidator
+from .models import *
 
 #users 
+
+
 class User(AbstractUser):
     is_admin= models.BooleanField('Is admin', default=False)
     is_teacher = models.BooleanField('Is Teacher', default=False)
     is_pupil = models.BooleanField('Is Pupil', default=False)
-
 
 
 # contact

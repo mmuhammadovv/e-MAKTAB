@@ -27,7 +27,7 @@
             <a href="{% url 'account' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
             <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
             {% else %}
-            <p>Please back to this <a href="{% url 'home' %}">page!</a></p>
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
             {% endif %}
 
         </div>
@@ -40,6 +40,7 @@
 <!-- lessons -->
 <div class="lessons">
     <div class="container">
+        {% if user.is_superuser or user.is_teacher %}
         {% for x in all %}
             <div class="lesson">
                 <div class="lesson_vid">
@@ -51,6 +52,10 @@
                 </div>
             </div>
         {% endfor %}
+        {% else %}
+        <p>You do not have access to this page</p>
+        {% endif %}
+        <p></p>
     </div>
 </div>
 <!-- lessons -->

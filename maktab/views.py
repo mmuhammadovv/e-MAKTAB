@@ -13,7 +13,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request, "base.html")
+    teachers = User.is_teacher
+    return render(request, "base.html", {'teachers':teachers})
 
 @login_required(login_url='login')
 def account(request):
@@ -38,7 +39,6 @@ def lesson(request, pk:int):
     return render(request, 'lesson.html', {'lesson':lesson})
 
 
-
 def streaming_lesson(request, pk: int):
     file, status_code, content_length, content_range = open_file(request, pk)
     response = StreamingHttpResponse(file, status=status_code, content_type='video/mp4')
@@ -48,6 +48,16 @@ def streaming_lesson(request, pk: int):
     response['Cache-Control'] = 'no-cache'
     response['Content-Range'] = content_range
     return response
+
+def search(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        lessons = Video.objects.filter(title__contains = searched)
+
+        return render(request, 'search_result.html', {'searched':searched, 'lessons':lessons})
+    else:
+        return render(request, 'search_result.html')
+
 
 @login_required(login_url='login')
 def add_lesson(request):
@@ -95,7 +105,7 @@ def login_function(request):
 
 def logoutfunction(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 def contact(request):

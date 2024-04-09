@@ -16,6 +16,10 @@
         </div>
         <div class="nav_menu">
             {% if user.is_superuser %}
+            <div class="search">
+                <input type="text" placeholder="Search in Lessons">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
             <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
             <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
             <a href="{% url 'teachers' %}"><i class="fa-solid fa-chalkboard-user"></i>Teachers</a>
@@ -27,15 +31,15 @@
             {% else %}
             <div class="search_sec">
                 <div class="search1">
-                <form action="{% url 'search' %}" method="POST" class="search">
-                    {% csrf_token %}
-                    <input type="text" name="searched" placeholder="Search in Lessons">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-
+                    <form action="{% url 'search' %}" method="POST" class="search">
+                        {% csrf_token %}
+                        <input type="text" name="searched" placeholder="Search in Lessons">
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                 </div>
                 <div>
                     <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+                    <a href="{% url 'account' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
                     <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
                 </div>
             </div>
@@ -46,28 +50,14 @@
 <!-- navbar -->
 
 
-
-<!-- lessons -->
-<div class="lessons">
-    <div class="container">
-            <div class="lesson_detail">
-                <div class="lesson_vid">
-                    <video
-                        id="my-video"
-                        class="video-js"
-                        controls
-                        preload="auto"
-                        data-setup="{}"
-                    >
-                        <source src="{% url 'stream' lesson.id %}" type="video/mp4"/>
-                        <source src="{% url 'stream' lesson.id %}" type="video/webm"/>
-                    </video>
-                </div>
-                <div class="about_lesson">
-                    <h1>{{lesson.title}}</h1>
-                    <p>{{lesson.description}}</p>
-                </div>
-            </div>
-    </div>
+<div class="container">
+        {% if searched %}
+            <h2>You Searched For "<span>{{searched}}</span>"</h2>       
+            <h1>Results</h1>    
+            {% for lesson in lessons %}
+                    <p><a href="{% url 'lesson' lesson.id %}">{{lesson.title}}</a></p>
+                {% endfor %}
+            {% else %}
+            <h2>You Did not Searched !</h2>
+        {% endif %}
 </div>
-<!-- lessons -->
