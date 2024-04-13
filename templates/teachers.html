@@ -34,47 +34,19 @@
         <h1>Teachers</h1>
         <table class="teacher_l">
             <tr>
-              <th>FullName</th>
+              <th>Name</th>
               <th>Subject</th>
               <th>Age</th>
               <th>Place of Living</th>  
             </tr>
-            <tr>
-                <td>John </td>
-                <td>Math</td>
-                <td>32</td>
-                <td>Bukhara</td>
-            </tr>
-            <tr>
-                <td>John </td>
-                <td>Math</td>
-                <td>32</td>
-                <td>Bukhara</td>
-            </tr>
-            <tr>
-                <td>John </td>
-                <td>Math</td>
-                <td>32</td>
-                <td>Bukhara</td>
-            </tr>
-            <tr>
-                <td>John </td>
-                <td>Math</td>
-                <td>32</td>
-                <td>Bukhara</td>
-            </tr>
-            <tr>
-                <td>John </td>
-                <td>Math</td>
-                <td>32</td>
-                <td>Bukhara</td>
-            </tr>
-            <tr>
-                <td>John </td>
-                <td>Math</td>
-                <td>32</td>
-                <td>Bukhara</td>
-            </tr>
+            {% for teach in teachers %}
+                <tr>
+                    <td>{{teach.first_name}}</td>
+                    <td>{{teach.is_teacher}}</td>
+                    <td>{{teach.age}}</td>
+                    <td>{{teach.place_of_living}}</td>
+                </tr>
+            {% endfor %}      
         </table>
         {% else %}
         <p>You do not have access to this page</p>

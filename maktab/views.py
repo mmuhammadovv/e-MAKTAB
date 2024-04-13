@@ -27,12 +27,16 @@ def pupils(request):
 
 @login_required(login_url='login')
 def teachers(request):
-    return render(request, "teachers.html")
+    teachers = User.objects.all()
+    
+    return render(request, "teachers.html", {'teachers':teachers})
 
 @login_required(login_url='login')
 def lessons(request):
     all_lesson=Video.objects.all()
     return render(request, "lessons.html",{"all":all_lesson})
+
+
 @login_required(login_url='login')
 def lesson(request, pk:int):
     lesson = get_object_or_404(Video, id=pk)

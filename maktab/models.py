@@ -11,6 +11,8 @@ from .models import *
 
 
 class User(AbstractUser):
+    age = models.CharField(max_length=2)
+    place_of_living = models.CharField(max_length=55)
     is_admin= models.BooleanField('Is admin', default=False)
     is_teacher = models.BooleanField('Is Teacher', default=False)
     is_pupil = models.BooleanField('Is Pupil', default=False)
