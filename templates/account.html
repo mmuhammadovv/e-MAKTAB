@@ -18,7 +18,7 @@
             <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
             {% elif user.is_teacher %}
             <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-            <a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
             {% else %}
             <div class="search_sec">
                 <div class="search1">

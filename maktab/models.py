@@ -8,6 +8,11 @@ from django.core.validators import FileExtensionValidator
 from .models import *
 
 #users 
+class Account(models.Model):
+    type = models.CharField(max_length=55)
+
+    def __str__(self):
+        return self.type
 
 
 class User(AbstractUser):
@@ -16,6 +21,7 @@ class User(AbstractUser):
     is_admin= models.BooleanField('Is admin', default=False)
     is_teacher = models.BooleanField('Is Teacher', default=False)
     is_pupil = models.BooleanField('Is Pupil', default=False)
+    type = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
 
 
 # contact

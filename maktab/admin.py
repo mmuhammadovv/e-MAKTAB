@@ -9,3 +9,4 @@ from .models import *
 admin.site.register(Contact)
 admin.site.register(Video)
 admin.site.register(User)
+admin.site.register(Account)
