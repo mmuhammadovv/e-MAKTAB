@@ -12,22 +12,31 @@
 <div class="container">
     <div class="navbar">
         <div class="nav_logo">
-            <h1><span>M</span>School</h1>
+            <h1><a href="{% url 'home' %}"><span>M</span>School</a></h1>
         </div>
         <div class="nav_menu">
             {% if user.is_superuser %}
-            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
             <a href="{% url 'add_lesson' %}"><i class="fa-solid fa-plus"></i>Add</a>
             <a href="{% url 'account' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
-            <a href="{% url 'teachers' %}"><i class="fa-solid fa-chalkboard-user"></i>Teachers</a>
-            <a href="{% url 'pupils' %}"><i class="fa-solid fa-person"></i>Pupils</a>
+            <a href="{% url 'users' %}"><i class="fa-solid fa-users"></i>Users</a>
             <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
             {% elif user.is_teacher %}
             <a href="{% url 'add_lesson' %}"><i class="fa-solid fa-plus"></i>Add</a>
             <a href="{% url 'account' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
             <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
             {% else %}
-            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+            <div class="search_sec">
+                <div class="search1">
+                <form action="{% url 'search' %}" method="POST" class="search">
+                    {% csrf_token %}
+                    <input type="text" name="searched" placeholder="Search in Lessons">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+                </div>
+                <div>
+                    <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+                </div>
+            </div>
             {% endif %}
 
         </div>
@@ -40,7 +49,6 @@
 <!-- lessons -->
 <div class="lessons">
     <div class="container">
-        {% if user.is_superuser or user.is_teacher %}
         {% for x in all %}
             <div class="lesson">
                 <div class="lesson_vid">
@@ -48,17 +56,37 @@
                 </div>
                 <div class="about_lesson">
                     <a href="{% url 'lesson' x.id %}"><h1>{{x.title}}</h1></a>
-                    <p>{{x.description}}</p>
+                    <div class="p">
+                        <p>{{x.description|slice:":350"}}........</p>
+                    </div>
                 </div>
             </div>
         {% endfor %}
-        {% else %}
-        <p>You do not have access to this page</p>
-        {% endif %}
         <p></p>
     </div>
 </div>
 <!-- lessons -->
+
+<!-- footer -->
+<section class="footer_sec">
+    <div class="container">
+        <div class="footer">
+            <div class="logo">
+                <h1><span>M</span>School</h1>
+            </div>
+            <div class="menu">
+                <a href="#home">HOME</a>
+                <a href="#about">ABOUT US</a>
+                <a href="#teachers">TEACHERS</a>
+                <a href="#contact">CONTACT US</a>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="end">
+    <p>Copyright by MSchool</p>
+</div>
+<!-- footer -->
 
 
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>

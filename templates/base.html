@@ -1,33 +1,37 @@
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSchool - {% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .home_sec{
+        .home_sec {
             background-position: center;
             background-image: linear-gradient(rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)), url(static/images/kids1.jpg);
             background-size: cover;
         }
 
-        .about_sec{
+        .about_sec {
             background-image: linear-gradient(rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)), url(static/images/teachers.jpg);
             background-size: cover;
-            background-position: bottom, center;   
+            background-position: bottom, center;
         }
 
-        .contact_sec{
+        .contact_sec {
             background-image: linear-gradient(rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)), url(static/images/school.jpg);
             background-size: cover;
-            background-position:  center;
+            background-position: center;
         }
     </style>
 </head>
+
 <body>
-    
+
     <!-- home  -->
     <section class="home_sec" id="home">
         <div class="container">
@@ -39,27 +43,28 @@
                     </div>
                     <div class="nav_menu">
                         {% if user.is_superuser or user.is_teacher %}
-                        <a href="#home"><i class="fa-solid fa-house"></i>Home</a>
                         <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>Username</a>
+                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>{{user.username}}</a>
                         {% elif user.is_pupil %}
-                        <a href="#"><i class="fa-solid fa-house"></i>Home</a>
                         <a href="{% url 'account' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>Username</a>
+                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>{{user.username}}</a>
                         {% else %}
-                        <a href="{% url 'login' %}"><i class="fa-solid fa-user"></i>Username</a>
+                        <a href="{% url 'login' %}"><i class="fa-solid fa-user"></i>Log In</a>
                         {% endif %}
-
 
                     </div>
                 </div>
                 <!-- navbar -->
-                <p>A school is both the educational institution and building designed to provide learning spaces and learning environments for the teaching of students under the direction of teachers. Most countries have systems of formal education, which is sometimes compulsory. In these systems, students progress through a series of schools that can be built and operated by both government and private organization</p>
+                <p>A school is both the educational institution and building designed to provide learning spaces and
+                    learning environments for the teaching of students under the direction of teachers. Most countries
+                    have systems of formal education, which is sometimes compulsory. In these systems, students progress
+                    through a series of schools that can be built and operated by both government and private
+                    organization</p>
             </div>
         </div>
     </section>
     <!-- home -->
-    
+
 
 
 
@@ -69,17 +74,17 @@
             <div class="stats">
                 <div class="stat">
                     <h3><i class="fa-solid fa-child"></i></h3>
-                    <h1>834</h1>
+                    <h1>{{pupils}}</h1>
                     <h2>Pupils</h2>
                 </div>
                 <div class="stat">
                     <h3><i class="fa-solid fa-chalkboard-user"></i></h3>
-                    <h1>44</h1>
+                    <h1>{{teachers}}</h1>
                     <h2>Teachers</h2>
                 </div>
                 <div class="stat">
                     <h3><i class="fa-brands fa-youtube"></i></h3>
-                    <h1>245</h1>
+                    <h1>{{lessons}}</h1>
                     <h2>Lessons</h2>
                 </div>
             </div>
@@ -95,12 +100,25 @@
         <div class="container">
             <div class="about">
                 <h1>Why Choose Us</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa iure placeat non, maxime accusamus, vel quam quod minima natus numquam velit id eius debitis! Reprehenderit cumque molestias similique porro beatae nemo culpa nam. Optio tempore iure natus deserunt earum praesentium, deleniti placeat iste culpa veniam non sunt dolore in voluptatem repudiandae omnis eos vero similique nulla perferendis suscipit labore impedit iusto explicabo. Ea ipsam quo, reiciendis nam fuga voluptate nihil aliquam hic consectetur soluta eius debitis temporibus. Reprehenderit tempore ducimus suscipit adipisci rerum, ab deserunt velit laboriosam fugit reiciendis maiores delectus, dolores laudantium odio voluptatum eaque officiis accusantium quas? Mollitia a nostrum porro obcaecati, magni iure in dicta amet incidunt voluptatibus labore ipsa cupiditate? Unde et culpa explicabo, necessitatibus mollitia nostrum nisi cum reiciendis dolores recusandae id repudiandae provident consequatur eligendi possimus dignissimos temporibus maxime iusto cumque optio! Minima labore ipsum inventore tenetur mollitia quidem similique veritatis repellat dignissimos aliquid consequatur iusto obcaecati, dolore amet molestiae ab corporis ipsam laborum ratione culpa nobis, officiis officia accusantium. Deleniti, laboriosam. Voluptatum, molestiae.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa iure placeat non, maxime accusamus,
+                    vel quam quod minima natus numquam velit id eius debitis! Reprehenderit cumque molestias similique
+                    porro beatae nemo culpa nam. Optio tempore iure natus deserunt earum praesentium, deleniti placeat
+                    iste culpa veniam non sunt dolore in voluptatem repudiandae omnis eos vero similique nulla
+                    perferendis suscipit labore impedit iusto explicabo. Ea ipsam quo, reiciendis nam fuga voluptate
+                    nihil aliquam hic consectetur soluta eius debitis temporibus. Reprehenderit tempore ducimus suscipit
+                    adipisci rerum, ab deserunt velit laboriosam fugit reiciendis maiores delectus, dolores laudantium
+                    odio voluptatum eaque officiis accusantium quas? Mollitia a nostrum porro obcaecati, magni iure in
+                    dicta amet incidunt voluptatibus labore ipsa cupiditate? Unde et culpa explicabo, necessitatibus
+                    mollitia nostrum nisi cum reiciendis dolores recusandae id repudiandae provident consequatur
+                    eligendi possimus dignissimos temporibus maxime iusto cumque optio! Minima labore ipsum inventore
+                    tenetur mollitia quidem similique veritatis repellat dignissimos aliquid consequatur iusto
+                    obcaecati, dolore amet molestiae ab corporis ipsam laborum ratione culpa nobis, officiis officia
+                    accusantium. Deleniti, laboriosam. Voluptatum, molestiae.</p>
             </div>
         </div>
     </section>
     <!-- about -->
-    
+
 
 
 
@@ -176,7 +194,10 @@
                     </form>
                 </div>
                 <div class="location">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12266.520483993405!2d64.4449661!3d39.7704123!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f50058940b0e5e9%3A0xd846578a01e12dcb!2sMonday%20Academy!5e0!3m2!1sru!2s!4v1711371106760!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12266.520483993405!2d64.4449661!3d39.7704123!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f50058940b0e5e9%3A0xd846578a01e12dcb!2sMonday%20Academy!5e0!3m2!1sru!2s!4v1711371106760!5m2!1sru!2s"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -210,15 +231,15 @@
 
     <script>
         var form_fields = document.getElementsByTagName('input')
-            form_fields[1].placeholder = 'Your Name..';
-            form_fields[2].placeholder = 'Your Email..';
-            form_fields[3].placeholder = 'Your Phone..';
+        form_fields[1].placeholder = 'Your Name..';
+        form_fields[2].placeholder = 'Your Email..';
+        form_fields[3].placeholder = 'Your Phone..';
 
 
         var form_fields = document.getElementsByTagName('textarea')
-            form_fields[0].placeholder = 'Comment..';
+        form_fields[0].placeholder = 'Comment..';
 
     </script>
 </body>
-</html>
 
+</html>

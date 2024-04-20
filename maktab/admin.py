@@ -1,12 +1,9 @@
 from django.contrib import admin
-
-# Register your models here.
-
-
 from .models import *
 
-
+# admin 
 admin.site.register(Contact)
 admin.site.register(Video)
 admin.site.register(User)
-admin.site.register(Account)
+admin.site.register(AccountType)
+admin.site.register(Profile)

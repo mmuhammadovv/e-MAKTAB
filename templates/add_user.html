@@ -8,17 +8,14 @@
 <div class="container">
     <div class="navbar">
         <div class="nav_logo">
-            <h1><span>M</span>School</h1>
+            <h1><a href="{% url 'home' %}"><span>M</span>School</a></h1>
         </div>
         <div class="nav_menu">
             {% if user.is_superuser %}
-            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
-            <a href="{% url 'teachers' %}"><i class="fa-solid fa-right-from-bracket"></i>Teachers</a>
+            <a href="{% url 'users' %}"><i class="fa-solid fa-users"></i>Users</a>
             <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-            <a href="{% url 'pupils' %}"><i class="fa-solid fa-person"></i>Pupils</a>
             <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
             {% else %}
-            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
             <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
             {% endif %}
 
@@ -30,12 +27,12 @@
 
 
 
-<!-- add teacher -->
+<!-- add user -->
 <section class="add_teacher_sec">
     <div class="container">
         {% if user.is_superuser %}
         <div class="add_teacher">
-            <form  method="post">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.first_name }}
                 {{ form.username }}
@@ -52,9 +49,12 @@
                     {{ form.is_pupil }}
                     <p>Pupil</p>
                 </div>
-                {{ form.type }}
+                <div class="chose">
+                    <p>Confirm the Type</p>
+                    {{ form.type }}
+                </div>
                 <span class="text-error">{{ form.errors }}</span>
-              <button type="submit">Add</button>
+              <button>Add</button>
             </form>
         </div>
         {% else %}
@@ -62,7 +62,7 @@
         {% endif %}
     </div>
 </section>
-<!-- add teacher -->
+<!-- add user -->
 
 
 

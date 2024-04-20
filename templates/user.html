@@ -1,0 +1,56 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>User - {{user.username}}</title>
+
+<!-- navbar -->
+<div class="container">
+    <div class="navbar">
+        <div class="nav_logo">
+            <h1><a href="{% url 'home' %}"><span>M</span>School</a></h1>
+        </div>
+        <div class="nav_menu">
+            <a href="{% url 'add_user' %}"><i class="fa-solid fa-plus"></i>Add User</a>
+            <a href="{% url 'users' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
+        </div>
+    </div>
+</div>
+<!-- navbar -->
+
+
+<!-- user  -->
+<section class="user_sec">
+    <div class="container">
+        <div class="user">
+            <div class="user_img">
+                {% if user.profile.image %}
+                <img src="{{ user.profile.image.url }}">  
+                {% else %}
+                <img src="{% static 'images/account.png' %}" alt="">
+                {% endif %}  
+            </div>
+            <div class="user_about">
+                <h1>Name</h1>
+                <p>{{user.first_name}}</p>
+                <h1>Email</h1>
+                <p>{{user.email}}</p>
+                <h1>Age</h1>
+                <p>{{user.age}}</p>
+                <h1>Place of Living</h1>
+                <p>{{user.place_of_living}}</p>
+                <h1>Date Joined </h1>
+                <p>{{user.date_joined}}</p>
+                <h1>
+                    {{user.type}}
+                </h1>
+                <div class="user_btn">
+                    <button class="del"><a href="{% url 'user_delete' user.id %}">Delete</a></button>
+                <button><a href="{% url 'user_update' user.id %}">Update</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- user -->
+
+

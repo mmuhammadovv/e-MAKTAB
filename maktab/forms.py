@@ -2,20 +2,13 @@ from .models import *
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-# lesson form
-class Lesson_form(forms.ModelForm):
+
+# User forms
+class SignUpForm(UserCreationForm):
     class Meta:
-        model = Video
-        fields = ['title','description', 'image','file']
-    
+        model = User
+        fields = ['first_name','username', 'email', 'age', 'place_of_living', 'type','password1', 'password2', 'is_admin', 'is_teacher', 'is_pupil']
 
-
-
-# user form
-        
-
-
-# login
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget= forms.TextInput(
@@ -32,75 +25,29 @@ class LoginForm(forms.Form):
         )
     )
 
-
-
-# signup
-class SignUpForm(UserCreationForm):
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
-
-    first_name = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
-
-
-
-    email = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
-
-
-
-    age = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
-
-    place_of_living = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
-
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
-
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
-    
-    
-    
-    
-
+class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('first_name','username', 'email', 'age', 'place_of_living', 'password1', 'password2', 'is_admin', 'is_teacher', 'is_pupil', 'type')
+        fields = ['first_name','username', 'email', 'age', 'place_of_living', 'type','is_admin', 'is_teacher', 'is_pupil']
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['user', 'image']
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']
+
+
+
+
+
+# lesson form
+class Lesson_form(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = ['title','description', 'image','file']
+    
 

@@ -5,53 +5,39 @@ from .models import *
 from django.http import StreamingHttpResponse
 from django.contrib import messages
 from .services import open_file
-from django.contrib.auth import login, logout
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+# base
+def home(request ):
+    lessons = Video.objects.count()
+    teachers = User.objects.filter(type='1').count()
+    pupils = User.objects.filter(type='2').count()
+
+    return render(request, "base.html", {'lessons':lessons, 'teachers':teachers, 'pupils':pupils})
 
 
-def home(request):
-    teachers = User.is_teacher
-    return render(request, "base.html", {'teachers':teachers})
 
-@login_required(login_url='login')
+
+# user functions
 def account(request):
-    all_lesson=Video.objects.all()
-    return render(request, "account.html", {'all':all_lesson})
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES ,instance=request.user.profile)
 
-@login_required(login_url='login')
-def pupils(request):
-    return render(request, "pupils.html")
+        if form.is_valid():
+            form.save()
+            return redirect('account')
 
-@login_required(login_url='login')
-def teachers(request):
-    teachers = User.objects.all()
-    
-    return render(request, "teachers.html", {'teachers':teachers})
+    else:
+        form = ProfileUpdateForm(instance=request.user.profile)
 
-@login_required(login_url='login')
-def lessons(request):
-    all_lesson=Video.objects.all()
-    return render(request, "lessons.html",{"all":all_lesson})
+    context = {
+        'form':form
+    }
 
-
-@login_required(login_url='login')
-def lesson(request, pk:int):
-    lesson = get_object_or_404(Video, id=pk)
-    return render(request, 'lesson.html', {'lesson':lesson})
-
-
-def streaming_lesson(request, pk: int):
-    file, status_code, content_length, content_range = open_file(request, pk)
-    response = StreamingHttpResponse(file, status=status_code, content_type='video/mp4')
-
-    response['Accept-Ranges'] = 'bytes'
-    response['Content-Length'] = str(content_length)
-    response['Cache-Control'] = 'no-cache'
-    response['Content-Range'] = content_range
-    return response
+    return render(request, "account.html",context )
 
 def search(request):
     if request.method == 'POST':
@@ -62,7 +48,88 @@ def search(request):
     else:
         return render(request, 'search_result.html')
 
+@login_required(login_url='login')
+def add_user(request):
+    msg = None
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            msg = 'user created'
+            return redirect('create_profile')
+        else:
+            msg = 'form is not valid'
+    else:
+        form = SignUpForm()
 
+    return render(request, "add_user.html", {'form':form, 'msg':msg})
+
+def user_update(request, pk):
+
+        user = User.objects.get(pk=pk)
+        form = UserUpdateForm(instance=user)
+
+        
+        if request.method == 'POST':
+                form = UserUpdateForm(request.POST, instance=user)
+                if form.is_valid():
+                    form.save()
+                    return redirect('users')
+            
+
+        context = {'form':form}
+        return render(request, 'user_update.html', context)
+
+def user_delete(request, pk):
+    user = User.objects.get(pk=pk)
+
+    context = {'user':user}
+
+    if request.method == 'POST':
+        user.delete()
+        return redirect('users')
+    
+
+    return render(request, 'user_delete.html', context)
+
+@login_required(login_url='login')
+def users(request):
+    types = AccountType.objects.all()
+    users = User.objects.all()
+
+    active_type = request.GET.get('type', '')
+
+    if active_type:
+        users = users.filter(type__slug=active_type)
+
+
+    context = {
+        'users':users,
+        'types':types,
+        'active_type':active_type
+    }
+
+    return render(request, "users.html", context)
+
+def user(request, pk):
+    user = User.objects.get(pk=pk)
+
+    return render(request, "user.html", {'user':user})
+
+def create_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+    else:
+        form = ProfileForm()
+    return render(request, 'create_profile.html', {'form':form})
+
+
+
+
+# lesson functions
 @login_required(login_url='login')
 def add_lesson(request):
     if request.method == "POST":
@@ -75,23 +142,58 @@ def add_lesson(request):
     return render(request, "add_lesson.html", {'form':form})
 
 @login_required(login_url='login')
-def add_user(request):
-    msg = None
+def lessons(request):
+    all_lesson=Video.objects.all()
+    return render(request, "lessons.html",{"all":all_lesson})
+
+@login_required(login_url='login')
+def lesson(request, pk:int):
+    lesson = get_object_or_404(Video, id=pk)
+    return render(request, 'lesson.html', {'lesson':lesson})
+
+def streaming_lesson(request, pk: int):
+    file, status_code, content_length, content_range = open_file(request, pk)
+    response = StreamingHttpResponse(file, status=status_code, content_type='video/mp4')
+
+    response['Accept-Ranges'] = 'bytes'
+    response['Content-Length'] = str(content_length)
+    response['Cache-Control'] = 'no-cache'
+    response['Content-Range'] = content_range
+    return response
+
+def lesson_delete(request, pk):
+    lesson = Video.objects.get(pk=pk)
+
+    context = {'lesson':lesson}
+
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            msg = 'user created'
-            return redirect('account')
-        else:
-            msg = 'form is not valid'
-    else:
-        form = SignUpForm()
+        lesson.delete()
+        return redirect('lessons')
+    
 
-    return render(request, "add_user.html", {'form':form, 'msg':msg})
+    return render(request, 'lesson_delete.html', context)
+
+def lesson_update(request, pk):
+
+        lesson = Video.objects.get(pk=pk)
+        form = Lesson_form(instance=lesson)
+
+        
+        if request.method == 'POST':
+                form = Lesson_form(request.POST, instance=lesson)
+                if form.is_valid():
+                    form.save()
+                    return redirect('lessons')
+            
+
+        context = {'form':form}
+        return render(request, 'lesson_update.html', context)
 
 
 
+
+
+# login logout function
 def login_function(request):
     form = LoginForm(request.POST or None)
     msg = None
@@ -106,12 +208,13 @@ def login_function(request):
             msg = 'error validating form'
     return render(request, 'login.html', {'form':form, 'msg':msg})
 
-
 def logoutfunction(request):
     logout(request)
     return redirect('home')
 
 
+
+# contact
 def contact(request):
 
     if request.method=='POST':

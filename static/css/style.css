@@ -22,8 +22,8 @@ body {
 }
 
 
-/* home style */
 
+/* home style */
 .home_sec {
     height: 735;
 }
@@ -40,6 +40,10 @@ body {
     color: #36B449;
 }
 
+h1 a{
+    color: black;
+    text-decoration: none;
+}
 .navbar {
     padding-top: 10px;
     display: flex;
@@ -95,6 +99,27 @@ body {
     border-bottom-right-radius: 10px;
     border: 2px solid #36B449;
     width: 25;
+}
+
+.search_result{
+    margin-bottom: 250px;
+}
+
+.search_result h2 span{
+    color: #36B449;
+}
+
+.search_result h2{
+    font-family: var(--Kanit);
+    font-weight: 400;
+    font-size: 30;
+}
+
+.search_result a{
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 25;
+    color: #36B449;
 }
 
 
@@ -331,6 +356,7 @@ iframe {
 
 /* footer */
 .footer_sec {
+    background-color: white;
     height: 300;
 }
 
@@ -373,7 +399,7 @@ iframe {
     font-family: var(--Kanit);
     font-weight: 300;
     font-size: 20;
-    padding-top: 2 0px;
+    padding-top: 20px;
 }
 
 /* footer */
@@ -381,7 +407,7 @@ iframe {
 
 
 
-/* teachers list */
+/* users list */
 .teachers_list {
     margin-top: 10px;
 }
@@ -411,6 +437,11 @@ iframe {
     font-size: 20;
 }
 
+.teacher_l tr{
+    transition: .2s;
+
+}
+
 .teacher_l tr:nth-child(even) {
     background-color: #fff;
 }
@@ -418,6 +449,11 @@ iframe {
 .teacher_l tr:hover {
     background-color: #36B449;
     color: white;
+}
+
+.teacher_l td a:hover{
+    color: white;
+
 }
 
 .teacher_l th {
@@ -431,8 +467,107 @@ iframe {
     color: white;
 }
 
-/* teach list style */
 
+/* user list style */
+
+
+
+
+
+/* user style */
+.user{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    margin-bottom: 100px;
+}
+
+.user_img img{
+    width: 97%;
+    margin-top: 10px;
+}
+
+.user h1{
+    color: #36B449;
+    font-family: var(--Kanit);
+    font-weight: 500;
+    font-size: 35;
+
+}
+
+.user p{
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 25;
+    color: #555;
+    margin-bottom: 10px;
+
+}
+
+.user .del {
+    background-color: #EB4C42;
+}
+
+.user .del:hover{
+    background-color: #D30E00;
+    color: white;
+}
+
+.user button{
+    display: block;
+    width: 135;
+    height: 45;
+    margin-top: 5px;
+    background-color: #36B449;
+    border: 2px solid white;
+    border-radius: 8px;
+    color: white;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 20;
+    margin-right: 5px;
+}
+
+.user button a{
+    color: white;
+    text-decoration: none;    
+}
+.user button:hover{
+    background-color: #009D18;
+    color: white;
+}
+
+.user_btn{
+    margin-top: 20px;
+    display: flex;
+}
+
+
+
+.user_img input[type="file"]::file-selector-button {
+    border-radius: 4px;
+    padding: 0 16px;
+    margin-top: 10px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    margin-right: 16px;
+    transition: background-color 200ms;
+  }
+  
+.user_img  input[type="file"]::file-selector-button:hover {
+    background-color: #f3f4f6;
+  }
+  
+.user_img  input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+  }
+  
+
+
+/* user style */
 
 
 /* lessons list */
@@ -444,20 +579,15 @@ iframe {
     margin-bottom: 15px;    
     display: grid;
     grid-template-columns: 60% 40%;
-    height: 450;
 }
 
-.lesson:last-child{
-    margin-bottom: 50px;
-}
+
 .lesson_vid img{
     margin-top: 15px;
-    height: 438;
-    width: 780;
+    width: 98%;
 }
 
 .lesson_vid video{
-    height: 630;
     width: 100%;
 }
 
@@ -470,20 +600,134 @@ iframe {
     font-family: var(--Kanit);
     font-weight: 500;
     color: #36B449;
-    font-size: 40;
+    font-size: 45;
+    margin-top: 5px;
 }
 
 .about_lesson a{
+    color: white;
     text-decoration: none;
 }
 
 .about_lesson p{
     font-family: var(--Kanit);
-    font-size: 20;
+    font-size: 23;
     font-weight: 200;
 }
 
+.about_lesson .del {
+    background-color: #EB4C42;
+}
+
+.about_lesson .del:hover{
+    background-color: #D30E00;
+    color: white;
+}
+
+.about_lesson button{
+    width: 120;
+    height: 45;
+    background-color: #36B449;
+    border: 2px solid white;
+    border-radius: 8px;
+    color: white;
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 20;
+}
+
+.about_lesson button:hover{
+    background-color: #009D18;
+    color: white;
+}
+
+.lesson_delete p{
+    font-family: var(--Kanit);
+    font-weight: 400;
+    text-align: center;
+    font-size: 30;
+}
+.lesson_delete p a{
+    color: #36B449;
+    text-decoration: none;
+}
+
+.lesson_delete{
+    margin: 250 0;
+}
+
+
+.lesson_delete span{
+    color: #36B449;
+    font-size: 35;
+}
+
+.lesson_delete_btn{
+    display: flex;
+    justify-content: center;
+}
+
+.lesson_delete_btn button{
+    background-color: #36B449;
+    color: white;
+    width: 200;
+    height: 45;
+    border: 3px solid white;
+    border-radius: 8px;
+    margin-right: 5px;
+    font-size: 18;
+    transition: .5s;
+}
+.lesson_delete_btn button:hover{
+    background-color: #009D18;
+    color: white;
+}
+
+
+.lesson_delete_btn a{
+    color: white;
+    text-decoration: none;
+}
+
+.lesson_delete_btn .btn{
+
+    background-color: #EB4C42;
+}
+
+.lesson_delete_btn .btn:hover{
+    background-color: #D30E00;
+    color: white;
+}
+
+
+
+.update_btn .btn1{
+    width: 198;
+    background-color: #EB4C42;
+    color: white;
+}
+
+.update_btn .btn1:hover{
+    background-color: #D30E00;
+    color: white;
+}
+
+.update_btn .btn1 a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.update_btn .btn{
+    width: 198;
+}
+
+.update_btn .btn:hover{
+    background-color: #009D18;
+    color: white;
+}
 /* lesson */
+
 
 
 
@@ -501,7 +745,10 @@ iframe {
     border: 2px solid #36B449;
     border-radius: 10px;
     margin-bottom: 10px;
+    background-color: #fff;
 }
+
+
 
 .add_lesson input::placeholder{
     padding-left: 5px;
@@ -542,6 +789,34 @@ iframe {
 }
 
 
+
+.add_lesson input[type="file"]::file-selector-button {
+    padding: 0 16px;
+    height: 49px;
+    cursor: pointer;
+    background-color: #F5FFF9;
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+    border-right: 2px solid #36B449;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    margin-right: 16px;
+    font-size: 15   ;
+    transition: background-color 200ms;
+    transition: .3s ease;
+  }
+  
+.add_lesson  input[type="file"]::file-selector-button:hover {
+    background-color: #36B449;
+    color: white;
+  }
+  
+.add_lesson  input[type="file"]::file-selector-button:active {
+    background-color: #36B449;
+  }
+  
+
+
 /* add lesson style */
 
 
@@ -549,7 +824,7 @@ iframe {
 
 
 
-/* add teacher */
+/* add user */
 .add_teacher_sec {
     display: flex;
     margin-top: 20px;
@@ -562,18 +837,19 @@ iframe {
     height: 50;
     border: 2px solid #36B449;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10;
 }
+
 
 .choose{
     display: flex;
 }
 
-.choose input{
-    width: 40;
+.choose input, .chose input{
+    width: 35;
 }
 
-.choose p{
+.choose p, .chose p{
     font-family: var(--Kanit);
     font-weight: 300;
     font-size: 20;
@@ -581,6 +857,12 @@ iframe {
     margin-top: 5px;
     margin-left: 5px;
 }
+
+.chose p{
+    font-size: 20;
+    margin-bottom: 5px;
+}
+
 .add_teacher input::placeholder{
     padding-left: 5px;
     font-family: var(--Kanit);
@@ -607,6 +889,7 @@ iframe {
 }
 
 .add_teacher button{
+    margin-top: 20px;
     width: 400;
     background-color: #36B449;
     color: white;
@@ -620,7 +903,86 @@ iframe {
 
 }
 
-/* add teacher style */
+
+.add_teacher select {
+  font-size: 1rem;
+  font-weight: normal;
+  max-width: 100%;
+  padding: 8px 24px 8px 10px;
+  border: none;
+  background-color: white;
+  color: #36B449;
+  border: 2px solid #36B449;
+  border-radius: 8px;
+  appearance: none;
+  width: 150;
+  height: 45;
+}
+.add_teacher select:active, .add_teacher select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.add_teacher input[type='checkbox']{
+    border: 2px solid #36B449;
+    border-radius: 8px;
+}
+
+.add_teacher:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  border-top: 5px solid #aaa;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+
+.profile input[type="file"]::file-selector-button {
+    padding: 0 16px;
+    height: 49px;
+    cursor: pointer;
+    background-color: #F5FFF9;
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+    border-right: 2px solid #36B449;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    margin-right: 16px;
+    font-size: 15   ;
+    transition: background-color 200ms;
+    transition: .3s ease;
+  }
+  
+  /* file upload button hover state */
+.profile  input[type="file"]::file-selector-button:hover {
+    background-color: #36B449;
+    color: white;
+  }
+  
+  /* file upload button active state */
+.profile  input[type="file"]::file-selector-button:active {
+    background-color: #36B449;
+  }
+  
+
+.profile p{
+    font-family: var(--Kanit);
+    font-weight: 300;
+    font-size: 25;
+    margin-bottom: 5px;
+}
+
+.profile input{
+    margin-top: 10px;
+}
+
+
+/* add user style */
 
 
 
@@ -636,8 +998,10 @@ iframe {
 .login_sec img{
     width: 650;
 }
+/* login style */
 
-/* add teacher */
+
+/* add user */
 .add_teacher_sec {
     display: flex;
     margin-top: 20px;
