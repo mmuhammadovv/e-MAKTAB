@@ -22,6 +22,7 @@ class User(AbstractUser):
     type = models.ForeignKey(AccountType, related_name='users', on_delete=models.CASCADE)
     slug = models.SlugField(null=True, blank=True)
     age = models.CharField(max_length=2)
+    image = models.ImageField(upload_to='users_image/')
     place_of_living = models.CharField(max_length=55)
     is_admin= models.BooleanField('Is admin', default=False)
     is_teacher = models.BooleanField('Is Teacher', default=False)
@@ -30,13 +31,6 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='users_image/')
-
-    def __str__(self):
-        return f'{self.user.username} Profile'
 
 
 
@@ -47,6 +41,7 @@ class Contact(models.Model):
     phonenumber = models.CharField(max_length=13)
     email = models.EmailField()
     description = models.TextField()
+    age = models.IntegerField(max_length=255)
 
 
     def __str__(self):

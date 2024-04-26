@@ -1,55 +1,71 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>Users</title>
-
-<!-- navbar -->
-<div class="container">
-    <div class="navbar">
-        <div class="nav_logo">
-            <h1><a href="{% url 'home' %}"><span>M</span>School</a></h1>
-        </div>
-        <div class="nav_menu">
-            {% if user.is_superuser %}
-            <a href="{% url 'add_user' %}"><i class="fa-solid fa-plus"></i>Add User</a>
-            <a href="{% url 'users' %}"><i class="fa-solid fa-users"></i>All Users</a>
-            {% for type in types %}
-                <a href="{% url 'users' %}?type={{ type.slug }}"><i class="fa-solid fa-user"></i>{{type.name}}</a>
-            {% endfor %}
-            <a href="{% url 'account' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
-            {% else %}
-            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
-            {% endif %}
-        </div>
-    </div>
-</div>
-<!-- navbar -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<title>users</title>
+<body>
 
 
-<!-- users  -->
-<div class="teachers_list">
-    <div class="container">
-        {% if user.is_superuser %}
 
-        <table class="teacher_l">
-            <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Place of Living</th>  
-            </tr>
-            {% for user in users %}
-                <tr>
-                    <td><a href="{% url 'user' user.id %}">{{user.first_name}}</a></td>
-                    <td>{{user.age}}</td>
-                    <td>{{user.place_of_living}}</td>
-                </tr>
-            {% endfor %}      
-        </table>
+    <!-- header section starts  -->
+<header class="header">
+    <a href="#" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
+    <nav class="navbar">
+        {% if user.is_superuser or user.is_admin %}
+        <a href="{% url 'users' %}"> <i class="fas fa-angle-right"></i> all users </a>
+        {% for type in types %}
+            <a href="{% url 'users' %}?type={{ type.slug }}"> <i class="fas fa-angle-right"></i> {{type.name}}s </a>
+        {% endfor %}
+        <a href="{% url 'add_user' %}"> <i class="fas fa-angle-right"></i> add user </a>
+        <a href="{% url 'account' %}"> <i class="fas fa-angle-right"></i> back </a>
+        <a href="{% url 'logout' %}"> <i class="fas fa-angle-right"></i> logout  </a>
         {% else %}
-        <p>You do not have access to this page</p>
+        <a href="{% url 'account' %}"> <i class="fas fa-angle-right"></i> back </a>
+        <a href="{% url 'logout' %}"> <i class="fas fa-angle-right"></i> logout  </a>
         {% endif %}
+    </nav>
+    <div class="share">
+        <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+        <a href="https://twitter.com" class="fab fa-twitter"></a>
+        <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+        <a href="https://www.instagram.com" class="fab fa-instagram"></a>
     </div>
-</div>
-<!-- users -->
+</header>
+<!-- header section ends -->
 
 
+
+
+<!-- users section ends -->
+<section class="users_sec">
+    <div class="container">
+        <div class="users">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>full name</th>
+                        <th>age</th>
+                        <th>role</th>
+                        <th>location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{% if user.image %}<img src="{{user.image.url}}" alt="">{% else %} <img src="{% static 'images/account.png' %}" alt="">{% endif %} <a href="{% url 'user' user.id %}">{{user.first_name}}</a></td>
+                        <td>{{user.age}}</td>
+                        <td style="{% if user.is_teacher%} color:#DE002F;{% elif user.is_admin or user.is_superuser %} color:#00DA30 ;{% else %}color:black;{% endif %}">{{user.type}}</td>
+                        <td>{{user.place_of_living}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- users section starts -->

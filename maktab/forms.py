@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name','username', 'email', 'age', 'place_of_living', 'type','password1', 'password2', 'is_admin', 'is_teacher', 'is_pupil']
+        fields = ['first_name','username', 'email', 'image','age', 'place_of_living', 'type','password1', 'password2', 'is_admin', 'is_teacher', 'is_pupil']
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -30,14 +30,9 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name','username', 'email', 'age', 'place_of_living', 'type','is_admin', 'is_teacher', 'is_pupil']
 
-class ProfileForm(forms.ModelForm):
+class UserImageUpdateForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ['user', 'image']
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
+        model = User
         fields = ['image']
 
 

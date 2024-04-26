@@ -1,73 +1,56 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <title>Update - {{lesson.title}}</title>
-<style>
+<body>
 
-</style>
 
-<!-- navbar -->
-<div class="container">
-    <div class="navbar">
-        <div class="nav_logo">
-            <h1><a href="{% url 'home' %}"><span>M</span>School</a></h1>
-        </div>
-        <div class="nav_menu">
-            {% if user.is_superuser %}
-            <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-            <a href="{% url 'users' %}"><i class="fa-solid fa-chalkboard-user"></i>Teachers</a>
-            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
-            {% elif user.is_teacher %}
-            <a href="{% url 'lessons' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
-            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+
+    <!-- header section starts  -->
+<header class="header">
+    <a href="#" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
+    <nav class="navbar">
+            {% if user.is_superuser or user.is_admin or user.is_teacher %}
+            <a href="{% url 'lessons' %}"> <i class="fas fa-angle-right"></i> back </a>
+            <a href="{% url 'logout' %}"> <i class="fas fa-angle-right"></i> log out </a>
             {% else %}
-            <div class="search_sec">
-                <div class="search1">
-                <form action="{% url 'search' %}" method="POST" class="search">
-                    {% csrf_token %}
-                    <input type="text" name="searched" placeholder="Search in Lessons">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-                </div>
-                <div>
-                    <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
-                    <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
-                </div>
-            </div>
+            <a href="{% url 'lessons' %}"> <i class="fas fa-angle-right"></i> lessons </a>
+            <a href="{% url 'logout' %}"> <i class="fas fa-angle-right"></i> log out </a>
             {% endif %}
-        </div>
+    </nav>
+    <div class="share">
+        <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+        <a href="https://twitter.com" class="fab fa-twitter"></a>
+        <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+        <a href="https://www.instagram.com" class="fab fa-instagram"></a>
     </div>
-</div>
-<!-- navbar -->
+</header>
+<!-- header section ends -->
 
 
 
 
-
-<!-- update lesson -->
-<section class="add_lesson_sec">
+<!-- add section starts -->
+<section class="add_sec">
     <div class="container">
-        <div class="add_lesson">
-            <div class="about_lesson_add">
-                {% if user.is_superuser or user.is_teacher %}
-                <form action="" method="post" enctype="multipart/form-data">
+        <div class="add">
+            {% if user.is_superuser or user.is_admin or user.is_teacher %}
+            <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form.title}}
                     {{form.description}}
-                    {{form.image}}
-                    {{form.file}}
-                    <div class="update_btn">
-                        <button class="btn1" type="button"><a href="{% url 'lessons' %}">Cancel</a></button>
-                        <button class="btn">Save</button>    
+                    <div class="update">
+                        <div class="update_button">
+                            <button type="button"><a href="{% url 'lessons' %}">Cancel</a></button>
+                            <button  type="submit" class="ubtn">Save</button>
+                        </div>
                     </div>
-                </form>
-                {% else %}
-                <p>You Can't add Lesson</p>
-                {% endif %}
-            </div>
+            </form>
+            {% else %}
+            <p>you can't update this lesson</p>
+            {% endif %}
         </div>
     </div>
 </section>
-<!-- update lesson -->
-
+<!-- add section ends -->

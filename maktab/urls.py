@@ -16,7 +16,6 @@ urlpatterns = [
     path('user_update/<str:pk>/',user_update, name='user_update'),
     path("user/<int:pk>", user, name="user"),
     path("users", users, name="users"),
-    path('create_profile', create_profile, name="create_profile"),
 
 
     # lesson urls

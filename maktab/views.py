@@ -24,14 +24,14 @@ def home(request ):
 # user functions
 def account(request):
     if request.method == 'POST':
-        form = ProfileUpdateForm(request.POST, request.FILES ,instance=request.user.profile)
+        form = UserImageUpdateForm(request.POST, request.FILES ,instance=request.user)
 
         if form.is_valid():
             form.save()
             return redirect('account')
 
     else:
-        form = ProfileUpdateForm(instance=request.user.profile)
+        form = UserImageUpdateForm(instance=request.user)
 
     context = {
         'form':form
@@ -52,11 +52,11 @@ def search(request):
 def add_user(request):
     msg = None
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignUpForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             user = form.save()
             msg = 'user created'
-            return redirect('create_profile')
+            return redirect('users')
         else:
             msg = 'form is not valid'
     else:
@@ -115,16 +115,6 @@ def user(request, pk):
     user = User.objects.get(pk=pk)
 
     return render(request, "user.html", {'user':user})
-
-def create_profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('users')
-    else:
-        form = ProfileForm()
-    return render(request, 'create_profile.html', {'form':form})
 
 
 
@@ -222,7 +212,8 @@ def contact(request):
         phonenumber = request.POST.get('phonenumber')
         email = request.POST.get('email')
         description = request.POST.get('description')
-        myquery = Contact(name=name, phonenumber=phonenumber, email=email, description=description)
+        age = request.POST.get('age')
+        myquery = Contact(name=name, phonenumber=phonenumber, email=email, description=description, age=age)
         myquery.save()
         return redirect('/')
 

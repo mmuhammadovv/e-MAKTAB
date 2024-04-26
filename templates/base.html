@@ -1,245 +1,313 @@
 {% load static %}
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSchool - {% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .home_sec {
-            background-position: center;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)), url(static/images/kids1.jpg);
-            background-size: cover;
-        }
+    <title>Mshool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-        .about_sec {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)), url(static/images/teachers.jpg);
-            background-size: cover;
-            background-position: bottom, center;
-        }
-
-        .contact_sec {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)), url(static/images/school.jpg);
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
 </head>
-
 <body>
+    
+<!-- header section starts  -->
+<header class="header">
+    <a href="#" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
+    <nav class="navbar">
+        <a href="#home"> <i class="fas fa-angle-right"></i> home </a>
+        <a href="#about"> <i class="fas fa-angle-right"></i> about </a>
+        <a href="#courses"> <i class="fas fa-angle-right"></i> team </a>
+        <a href="#contact"> <i class="fas fa-angle-right"></i> contact </a>
+        <a href="#reviews"> <i class="fas fa-angle-right"></i> reviews </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'account' %}"> <i class="fas fa-angle-right"></i> profile </a>
+        {% else %}
+        <a href="{% url 'login' %}"> <i class="fas fa-angle-right"></i> log in </a>
+        {% endif %}
+        
+    </nav>
+    <div class="share">
+        <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+        <a href="https://twitter.com" class="fab fa-twitter"></a>
+        <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+        <a href="https://www.instagram.com" class="fab fa-instagram"></a>
+    </div>
+</header>
+<!-- header section ends -->
 
-    <!-- home  -->
-    <section class="home_sec" id="home">
-        <div class="container">
-            <div class="home">
-                <!-- navbar -->
-                <div class="navbar">
-                    <div class="nav_logo">
-                        <h1><span>M</span>School</h1>
-                    </div>
-                    <div class="nav_menu">
-                        {% if user.is_superuser or user.is_teacher %}
-                        <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>{{user.username}}</a>
-                        {% elif user.is_pupil %}
-                        <a href="{% url 'account' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-                        <a href="{% url 'account' %}"><i class="fa-solid fa-user"></i>{{user.username}}</a>
-                        {% else %}
-                        <a href="{% url 'login' %}"><i class="fa-solid fa-user"></i>Log In</a>
-                        {% endif %}
 
-                    </div>
-                </div>
-                <!-- navbar -->
-                <p>A school is both the educational institution and building designed to provide learning spaces and
-                    learning environments for the teaching of students under the direction of teachers. Most countries
-                    have systems of formal education, which is sometimes compulsory. In these systems, students progress
-                    through a series of schools that can be built and operated by both government and private
-                    organization</p>
-            </div>
+
+
+<!-- home section starts  -->
+<section class="home" id="home">
+    <div class="image">
+        <img src="{% static 'images/home-img.svg' %}" alt="">
+    </div>
+    <div class="content">
+        <span>online education</span>
+        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, itaque beatae laboriosam nulla odio voluptatibus molestias vero pariatur laborum molestiae.</p>
+        <a href="#courses" class="btn">our lessons</a>
+    </div>
+</section>
+<!-- home section ends -->
+
+
+
+
+<!-- info section starts  -->
+<section class="info-container">
+    <div class="box">
+        <i class="fas fa-user-graduate"></i>
+        <div class="info">
+            <h3>+{{pupils}}</h3>
+            <p>students</p>
         </div>
-    </section>
-    <!-- home -->
-
-
-
-
-    <!-- statistics -->
-    <section class="stat_sec">
-        <div class="container">
-            <div class="stats">
-                <div class="stat">
-                    <h3><i class="fa-solid fa-child"></i></h3>
-                    <h1>{{pupils}}</h1>
-                    <h2>Pupils</h2>
-                </div>
-                <div class="stat">
-                    <h3><i class="fa-solid fa-chalkboard-user"></i></h3>
-                    <h1>{{teachers}}</h1>
-                    <h2>Teachers</h2>
-                </div>
-                <div class="stat">
-                    <h3><i class="fa-brands fa-youtube"></i></h3>
-                    <h1>{{lessons}}</h1>
-                    <h2>Lessons</h2>
-                </div>
-            </div>
+    </div>
+    <div class="box">
+        <i class="fab fa-youtube"></i>
+        <div class="info">
+            <h3>+{{lessons}}</h3>
+            <p>lessons</p>
         </div>
-    </section>
-    <!-- statistics -->
-
-
-
-
-    <!-- about -->
-    <section class="about_sec" id="about">
-        <div class="container">
-            <div class="about">
-                <h1>Why Choose Us</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa iure placeat non, maxime accusamus,
-                    vel quam quod minima natus numquam velit id eius debitis! Reprehenderit cumque molestias similique
-                    porro beatae nemo culpa nam. Optio tempore iure natus deserunt earum praesentium, deleniti placeat
-                    iste culpa veniam non sunt dolore in voluptatem repudiandae omnis eos vero similique nulla
-                    perferendis suscipit labore impedit iusto explicabo. Ea ipsam quo, reiciendis nam fuga voluptate
-                    nihil aliquam hic consectetur soluta eius debitis temporibus. Reprehenderit tempore ducimus suscipit
-                    adipisci rerum, ab deserunt velit laboriosam fugit reiciendis maiores delectus, dolores laudantium
-                    odio voluptatum eaque officiis accusantium quas? Mollitia a nostrum porro obcaecati, magni iure in
-                    dicta amet incidunt voluptatibus labore ipsa cupiditate? Unde et culpa explicabo, necessitatibus
-                    mollitia nostrum nisi cum reiciendis dolores recusandae id repudiandae provident consequatur
-                    eligendi possimus dignissimos temporibus maxime iusto cumque optio! Minima labore ipsum inventore
-                    tenetur mollitia quidem similique veritatis repellat dignissimos aliquid consequatur iusto
-                    obcaecati, dolore amet molestiae ab corporis ipsam laborum ratione culpa nobis, officiis officia
-                    accusantium. Deleniti, laboriosam. Voluptatum, molestiae.</p>
-            </div>
+    </div>
+    <div class="box">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <div class="info">
+            <h3>+{{teachers}}</h3>
+            <p>teachers</p>
         </div>
-    </section>
-    <!-- about -->
+    </div>
+</section>
+<!-- info section ends -->
 
 
 
 
-    <!-- teachers -->
-    <section class="teachs_sec" id="teachers">
-        <div class="container">
-            <div class="teachers">
-                <div class="teachs_text">
-                    <h1>We have recruited the best teachers</h1>
-                </div>
-                <div class="teachs">
-                    <div class="teach">
-                        <div class="teach_img">
-                            <img src="{% static 'images/teach1.jpg' %}" alt="">
-                        </div>
-                        <div class="teach_social">
-                            <a href=""><i class="fa-brands fa-instagram"></i></a>
-                            <a href=""><i class="fa-brands fa-twitter"></i></a>
-                            <a href=""><i class="fa-brands fa-facebook"></i></a>
-                        </div>
-                    </div>
-                    <div class="teach">
-                        <div class="teach_img">
-                            <img src="{% static 'images/teach2.jpg' %}" alt="">
-                        </div>
-                        <div class="teach_social">
-                            <a href=""><i class="fa-brands fa-instagram"></i></a>
-                            <a href=""><i class="fa-brands fa-twitter"></i></a>
-                            <a href=""><i class="fa-brands fa-facebook"></i></a>
-                        </div>
-                    </div>
-                    <div class="teach">
-                        <div class="teach_img">
-                            <img src="{% static 'images/teach3.jpg' %}" alt="">
-                        </div>
-                        <div class="teach_social">
-                            <a href=""><i class="fa-brands fa-instagram"></i></a>
-                            <a href=""><i class="fa-brands fa-twitter"></i></a>
-                            <a href=""><i class="fa-brands fa-facebook"></i></a>
-                        </div>
-                    </div>
-                    <div class="teach">
-                        <div class="teach_img">
-                            <img src="{% static 'images/teach4.jpg' %}" alt="">
-                        </div>
-                        <div class="teach_social">
-                            <a href=""><i class="fa-brands fa-instagram"></i></a>
-                            <a href=""><i class="fa-brands fa-twitter"></i></a>
-                            <a href=""><i class="fa-brands fa-facebook"></i></a>
-                        </div>
-                    </div>
+<!-- about section starts  -->
+<section class="about" id="about">
+    <div class="image">
+        <img src="{% static 'images/about-img.svg' %}" alt="">
+    </div>
+    <div class="content">
+        <span>about us</span>
+        <h3>best online platform for e-learning.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi beatae aperiam iusto officia illo porro. Magni, impedit quam saepe iste, vel perspiciatis eum libero magnam doloribus quisquam sint voluptatibus rem.</p>
+        <a href="#" class="btn">read more</a>
+    </div>
+</section>
+<!-- about section ends -->
+
+
+
+<!-- team section starts  -->
+<section class="courses" id="courses">
+    <div class="heading">
+        <span>our team</span>
+        <h3>we provided the best teachers</h3>
+    </div>
+    <div class="box-container">
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/teach1.jpg' %}" alt="">
+                <h3>Laziza </h3>
+            </div>
+            <div class="content">
+                <div class="share">
+                    <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com" class="fab fa-twitter"></a>
+                    <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+                    <a href="https://www.instagram.com" class="fab fa-instagram"></a>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- teachers  -->
-
-
-
-    <!-- contact -->
-    <section class="contact_sec" id="contact">
-        <div class="container">
-            <div class="contact_us">
-                <div class="contact">
-                    <h1>Contact Us</h1>
-                    <form action="/contact" method="POST">
-                        {% csrf_token %}
-                        <input type="text" name="fullname">
-                        <input type="email" name="email">
-                        <input type="text" name="phonenumber">
-                        <textarea name="description"></textarea>
-                        <button type="submit">SEND</button>
-                    </form>
-                </div>
-                <div class="location">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12266.520483993405!2d64.4449661!3d39.7704123!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f50058940b0e5e9%3A0xd846578a01e12dcb!2sMonday%20Academy!5e0!3m2!1sru!2s!4v1711371106760!5m2!1sru!2s"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/teach2.jpg' %}" alt="">
+                <h3>Asad</h3>
+            </div>
+            <div class="content">
+                <div class="share">
+                    <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com" class="fab fa-twitter"></a>
+                    <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+                    <a href="https://www.instagram.com" class="fab fa-instagram"></a>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- contact -->
-
-
-
-    <!-- footer -->
-    <section class="footer_sec">
-        <div class="container">
-            <div class="footer">
-                <div class="logo">
-                    <h1><span>M</span>School</h1>
-                </div>
-                <div class="menu">
-                    <a href="#home">HOME</a>
-                    <a href="#about">ABOUT US</a>
-                    <a href="#teachers">TEACHERS</a>
-                    <a href="#contact">CONTACT US</a>
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/teach3.jpg' %}" alt="">
+                <h3>Malika</h3>
+            </div>
+            <div class="content">
+                <div class="share">
+                    <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com" class="fab fa-twitter"></a>
+                    <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+                    <a href="https://www.instagram.com" class="fab fa-instagram"></a>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- footer -->
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/teach4.jpg' %}" alt="">
+                <h3>Jahongir</h3>
+            </div>
+            <div class="content">
+                <div class="share">
+                    <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com" class="fab fa-twitter"></a>
+                    <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+                    <a href="https://www.instagram.com" class="fab fa-instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/teach5.jpg' %}" alt="">
+                <h3>Kamola</h3>
+            </div>
+            <div class="content">
+                <div class="share">
+                    <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com" class="fab fa-twitter"></a>
+                    <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+                    <a href="https://www.instagram.com" class="fab fa-instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/teach6.jpg' %}" alt="">
+                <h3>Aziz</h3>
+            </div>
+            <div class="content">
+                <div class="share">
+                    <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com" class="fab fa-twitter"></a>
+                    <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+                    <a href="https://www.instagram.com" class="fab fa-instagram"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- team section ends -->
 
 
-    <div class="end">
-        <p>Copyright by mmuhammadovv</p>
+
+<!-- contact section starts  -->
+<section class="contact" id="contact">
+    <div class="heading">
+        <span>contact us</span>
+        <h3>get in touch</h3>
+    </div>
+    <div class="row">
+        <div class="contact-info-container">
+            <div class="box">
+                <i class="fas fa-phone"></i>
+                <div class="info">
+                    <h3>phone :</h3>
+                    <p>+998 91 444 23 32</p>
+                    <p>+998 99 333 45 54</p>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-envelope"></i>
+                <div class="info">
+                    <h3>email :</h3>
+                    <p>mshool@gmail.com</p>
+                    <p>myschool@gmail.com</p>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-map"></i>
+                <div class="info">
+                    <h3>address :</h3>
+                    <p>Bukhara - 12345</p>
+                </div>
+            </div>
+            <div class="share">
+                <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+                <a href="https://twitter.com/" class="fab fa-twitter"></a>
+                <a href="https://www.youtube.com/" class="fab fa-youtube"></a>
+                <a href="https://www.linkedin.com/" class="fab fa-linkedin"></a>
+            </div>   
+        </div>
+        <form action="/contact" method="post">
+            {% csrf_token %}
+            <div class="inputBox">
+                <input type="text" placeholder="name" name="fullname" id="">
+                <input type="email" placeholder="email" name="email" id="">
+            </div>
+            <div class="inputBox">
+                <input type="number" placeholder="phone" name="phonenumber" id="">
+                <input type="text" placeholder="age" name="age" id="">
+            </div>
+            <textarea name="description" placeholder="message" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value="send message" class="btn">
+        </form>
+    </div>
+</section>
+<!-- contact section ends -->
+
+
+
+<!-- reviews section starts  -->
+<section class="reviews" id="reviews">
+
+    <div class="heading">
+        <span>client reviews</span>
+        <h3>what they say?</h3>
     </div>
 
-    <script>
-        var form_fields = document.getElementsByTagName('input')
-        form_fields[1].placeholder = 'Your Name..';
-        form_fields[2].placeholder = 'Your Email..';
-        form_fields[3].placeholder = 'Your Phone..';
+    <div class="box-container">
 
+        <div class="box">
+            <img src="{% static 'images/client1.jpg' %}" alt="">
+            <h3>Aziza</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos repellat sunt a temporibus suscipit distinctio maiores iste tenetur voluptate nostrum.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
 
-        var form_fields = document.getElementsByTagName('textarea')
-        form_fields[0].placeholder = 'Comment..';
+        <div class="box">
+            <img src="{% static 'images/client3.jpg' %}" alt="">
+            <h3>Azamat</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos repellat sunt a temporibus suscipit distinctio maiores iste tenetur voluptate nostrum.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
 
-    </script>
+        <div class="box">
+            <img src="{% static 'images/client2.jpg' %}" alt="">
+            <h3>Kamila</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos repellat sunt a temporibus suscipit distinctio maiores iste tenetur voluptate nostrum.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- reviews section ends -->
+
 </body>
-
 </html>

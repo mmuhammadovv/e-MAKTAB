@@ -1,102 +1,64 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>Update - {{user.username}}</title>
-<style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<title>update - {{user.username}}</title>
+<body>
 
-</style>
 
-<!-- navbar -->
-<div class="container">
-    <div class="navbar">
-        <div class="nav_logo">
-            <h1><a href="{% url 'home' %}"><span>M</span>School</a></h1>
-        </div>
-        <div class="nav_menu">
-            {% if user.is_superuser %}
-            <a href="{% url 'lessons' %}"><i class="fa-brands fa-youtube"></i>Lessons</a>
-            <a href="{% url 'users' %}"><i class="fa-solid fa-chalkboard-user"></i>Teachers</a>
-            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
-            {% elif user.is_teacher %}
-            <a href="{% url 'lessons' %}"><i class="fa-solid fa-right-from-bracket"></i>Back</a>
-            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
-            {% else %}
-            <div class="search_sec">
-                <div class="search1">
-                <form action="{% url 'search' %}" method="POST" class="search">
-                    {% csrf_token %}
-                    <input type="text" name="searched" placeholder="Search in Lessons">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-                </div>
-                <div>
-                    <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
-                    <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
-                </div>
-            </div>
+
+    <!-- header section starts  -->
+<header class="header">
+    <a href="#" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
+    <nav class="navbar">
+        {% if user.is_superuser %}
+        <a href="{% url 'lessons' %}"> <i class="fas fa-angle-right"></i> lessons </a>
+        <a href="{% url 'users' %}"> <i class="fas fa-angle-right"></i> back </a>
+        <a href="{% url 'logout' %}"> <i class="fas fa-angle-right"></i> log out </a>
+        {% else %}
+        <a href="{% url 'lessons' %}"> <i class="fas fa-angle-right"></i> lessons </a>
+        <a href="{% url 'logout' %}"> <i class="fas fa-angle-right"></i> log out </a>
+        {% endif %}
+    </nav>
+    <div class="share">
+        <a href="https://www.facebook.com" class="fab fa-facebook-f"></a>
+        <a href="https://twitter.com" class="fab fa-twitter"></a>
+        <a href="https://www.youtube.com" class="fab fa-youtube"></a>
+        <a href="https://www.instagram.com" class="fab fa-instagram"></a>
+    </div>
+</header>
+<!-- header section ends -->
+
+
+
+
+<!-- add section starts -->
+<section class="add_sec">
+    <div class="container">
+        <div class="add">
+            {% if user.is_admin or user.is_superuser %}
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    {{form.first_name}}
+                    {{ form.username }}
+                    {{ form.email}}
+                    {{ form.age}}
+                    {{ form.place_of_living}}
+                    <div class="choose">
+                        {{ form.is_teacher }}
+                        <p>Teacher</p>
+                    </div>
+                    <div class="choose">
+                        {{ form.is_pupil }}
+                        <p>Pupil</p>
+                    </div>
+                    <div class="chose">
+                        <p>Confirm the role</p>
+                        {{ form.type }}
+                    </div>
+                    <button type="submit">save</button>
+            </form>
             {% endif %}
         </div>
     </div>
-</div>
-<!-- navbar -->
-
-
-
-
-<!-- update user -->
-<section class="add_teacher_sec">
-    <div class="container">
-        {% if user.is_superuser %}
-        <div class="add_teacher">
-            <form action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.first_name }}
-                {{ form.username }}
-                {{ form.email}}
-                {{ form.age}}
-                {{ form.place_of_living}}
-                <div class="choose">
-                    {{ form.is_teacher }}
-                    <p>Teacher</p>
-                </div>
-                <div class="choose">
-                    {{ form.is_pupil }}
-                    <p>Pupil</p>
-                </div>
-                <div class="chose">
-                    <p>Confirm the Type</p>
-                    {{ form.type }}
-                </div>
-                <span class="text-error">{{ form.errors }}</span>
-                <div class="update_btn">
-                    <button class="btn1" type="button"><a href="{% url 'users'  %}">Cancel</a></button>
-                    <button class="btn">Save</button>    
-                </div>
-            </form>
-        </div>
-        {% else %}
-        <p>You Can't add a User</p>
-        {% endif %}
-    </div>
 </section>
-<!-- update user -->
-
-
-
-
-
-<script>
-    var form_fields = document.getElementsByTagName('input')
-            form_fields[1].placeholder = 'First Name..';
-            form_fields[2].placeholder = 'Username..';
-            form_fields[3].placeholder = 'Email..';
-            form_fields[4].placeholder = 'Age..';
-            form_fields[5].placeholder = 'Place of Living..';
-            form_fields[6].placeholder = 'Password..';
-            form_fields[7].placeholder = 'Repeat Password..';
-
-
-    var form_fields = document.getElementsByTagName('textarea')
-            form_fields[0].placeholder = 'Biography..';
-</script>
+<!-- add section ends -->
