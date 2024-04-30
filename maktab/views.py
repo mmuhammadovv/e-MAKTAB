@@ -206,13 +206,10 @@ def login_function(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)    
-            if request.user.is_anonymous: 
-                messages()
-                return redirect('login')
             login(request, user)
             return redirect('home')
-        else:
-            messages(request, 'Something went wrong')
+        
+
     return render(request, 'login.html', {'form':form})
 
 def logoutfunction(request):
@@ -231,6 +228,6 @@ def contact(request):
         age = request.POST.get('age')
         myquery = Contact(name=name, phonenumber=phonenumber, email=email, description=description, age=age)
         myquery.save()
-        messages.info(request, 'We will answer you soon ;')
+        messages.info(request, 'We will answer you soon ')
         return redirect('/')
 

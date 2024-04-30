@@ -204,7 +204,7 @@
 <!-- team section ends -->
 
 
-
+{% if user.is_anonymous %}
 <!-- contact section starts  -->
 <section class="contact" id="contact">
     <div class="heading">
@@ -259,7 +259,7 @@
     </div>
 </section>
 <!-- contact section ends -->
-
+{% endif %}
 
 
 <!-- reviews section starts  -->
