@@ -5,9 +5,16 @@
 
 
 <body>
+
+
+    <div class="message">
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    </div>
 <!-- header section starts  -->
 <header class="header">
-    <a href="#" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
+    <a href="{% url 'home' %}" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
     <nav class="navbar">
         <a href="{% url 'home' %}"> <i class="fas fa-angle-right"></i> home </a>
         <a href="{% url 'home' %}"> <i class="fas fa-angle-right"></i> contact </a>

@@ -9,7 +9,7 @@
 
     <!-- header section starts  -->
 <header class="header">
-    <a href="#" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
+    <a href="{% url 'home' %}" class="logo"> <i class="fas fa-graduation-cap"></i> MShool </a>
     <nav class="navbar">
             {% if user.is_superuser or user.is_admin or user.is_teacher %}
             <a href="{% url 'lessons' %}"> <i class="fas fa-angle-right"></i> back </a>

@@ -29,6 +29,9 @@ def account(request):
         if form.is_valid():
             form.save()
             return redirect('account')
+        else :
+            messages.info(request, 'Something went wrong!')
+            return redirect('account')
 
     else:
         form = UserImageUpdateForm(instance=request.user)
@@ -50,30 +53,32 @@ def search(request):
 
 @login_required(login_url='login')
 def add_user(request):
-    msg = None
     if request.method == 'POST':
         form = SignUpForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             user = form.save()
-            msg = 'user created'
+            messages.info(request, 'User added succesfully!')
             return redirect('users')
-        else:
-            msg = 'form is not valid'
+        else :
+            messages.info(request, 'Something went wrong!')
+            return redirect('users')
     else:
         form = SignUpForm()
 
-    return render(request, "add_user.html", {'form':form, 'msg':msg})
+    return render(request, "add_user.html", {'form':form})
 
 def user_update(request, pk):
 
         user = User.objects.get(pk=pk)
         form = UserUpdateForm(instance=user)
-
-        
         if request.method == 'POST':
                 form = UserUpdateForm(request.POST, instance=user)
                 if form.is_valid():
                     form.save()
+                    messages.info(request, 'User updated succesfully!')
+                    return redirect('users')
+                else :
+                    messages.info(request, 'Something went wrong!')
                     return redirect('users')
             
 
@@ -87,6 +92,7 @@ def user_delete(request, pk):
 
     if request.method == 'POST':
         user.delete()
+        messages.info(request, 'User deleted succesfully!')
         return redirect('users')
     
 
@@ -126,6 +132,10 @@ def add_lesson(request):
         form=Lesson_form(data=request.POST,files=request.FILES)
         if form.is_valid():
             form.save()
+            messages.info(request, 'Lesson added succesfully!')
+            return redirect('lessons')
+        else :
+            messages.info(request, 'Something went wrong!')
             return redirect('lessons')
     else:
         form=Lesson_form()
@@ -158,6 +168,7 @@ def lesson_delete(request, pk):
 
     if request.method == 'POST':
         lesson.delete()
+        messages.info(request, 'Lesson deleted succesfully!')
         return redirect('lessons')
     
 
@@ -173,6 +184,10 @@ def lesson_update(request, pk):
                 form = Lesson_form(request.POST, instance=lesson)
                 if form.is_valid():
                     form.save()
+                    messages.info(request, 'Lesson updated succesfully!')
+                    return redirect('lessons')
+                else :
+                    messages(request, 'Something went wrong !')
                     return redirect('lessons')
             
 
@@ -186,17 +201,19 @@ def lesson_update(request, pk):
 # login logout function
 def login_function(request):
     form = LoginForm(request.POST or None)
-    msg = None
     if request.method == 'POST':
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)    
+            if request.user.is_anonymous: 
+                messages()
+                return redirect('login')
             login(request, user)
             return redirect('home')
         else:
-            msg = 'error validating form'
-    return render(request, 'login.html', {'form':form, 'msg':msg})
+            messages(request, 'Something went wrong')
+    return render(request, 'login.html', {'form':form})
 
 def logoutfunction(request):
     logout(request)
@@ -206,7 +223,6 @@ def logoutfunction(request):
 
 # contact
 def contact(request):
-
     if request.method=='POST':
         name = request.POST.get('fullname')
         phonenumber = request.POST.get('phonenumber')
@@ -215,6 +231,6 @@ def contact(request):
         age = request.POST.get('age')
         myquery = Contact(name=name, phonenumber=phonenumber, email=email, description=description, age=age)
         myquery.save()
+        messages.info(request, 'We will answer you soon ;')
         return redirect('/')
-
 
